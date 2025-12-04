@@ -565,35 +565,31 @@ def display_settings():
     }
     
     # 現在の選択状態を取得
-    current_modes = st.session_state.filter_modes.copy()
+    current_modes = st.session_state.filter_modes
     
-    # フィルターのチェックボックス
+    # フィルターのチェックボックス（keyを使わずvalueのみで制御）
     col1, col2 = st.columns(2)
     with col1:
         marked_checked = st.checkbox(
             filter_labels["marked"],
-            value="marked" in current_modes,
-            key="filter_marked"
+            value="marked" in current_modes
         )
     with col2:
         incorrect_checked = st.checkbox(
             filter_labels["incorrect"],
-            value="incorrect" in current_modes,
-            key="filter_incorrect"
+            value="incorrect" in current_modes
         )
     
     col3, col4 = st.columns(2)
     with col3:
         answered_checked = st.checkbox(
             filter_labels["answered"],
-            value="answered" in current_modes,
-            key="filter_answered"
+            value="answered" in current_modes
         )
     with col4:
         unanswered_checked = st.checkbox(
             filter_labels["unanswered"],
-            value="unanswered" in current_modes,
-            key="filter_unanswered"
+            value="unanswered" in current_modes
         )
     
     # フィルターの更新
