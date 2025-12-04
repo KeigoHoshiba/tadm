@@ -293,7 +293,7 @@ def initialize_session_state():
     if "shuffled_indices" not in st.session_state:
         st.session_state.shuffled_indices = list(range(len(st.session_state.questions)))
     if "filter_modes" not in st.session_state:
-        st.session_state.filter_modes = {"all"}  # 複数選択対応のためsetに変更
+        st.session_state.filter_modes = {"answered", "unanswered"}  # デフォルトで回答済みと未回答の両方
     if "current_session_stats" not in st.session_state:
         st.session_state.current_session_stats = {"correct": 0, "incorrect": 0, "total": 0}
 
@@ -304,8 +304,8 @@ def get_filtered_indices():
     
     filter_modes = st.session_state.filter_modes
     
-    # 「すべて」が選択されている場合、または何も選択されていない場合は全問題を返す
-    if "all" in filter_modes or not filter_modes:
+    # 何も選択されていない場合は全問題を返す
+    if not filter_modes:
         return all_indices
     
     # 複数フィルターの条件を満たす問題を収集（OR条件）
@@ -319,6 +319,9 @@ def get_filtered_indices():
     
     if "unanswered" in filter_modes:
         result.update(i for i in all_indices if i not in st.session_state.history)
+    
+    if "answered" in filter_modes:
+        result.update(i for i in all_indices if i in st.session_state.history)
     
     # 元の順序を維持
     return [i for i in all_indices if i in result]
@@ -419,7 +422,7 @@ def display_question():
         col1, col2 = st.columns(2)
         with col1:
             if st.button("🔄 すべての問題を表示", use_container_width=True, type="primary"):
-                st.session_state.filter_modes = {"all"}
+                st.session_state.filter_modes = {"answered", "unanswered"}
                 st.session_state.current_index = 0
                 st.session_state.answered = False
                 st.rerun()
@@ -548,31 +551,23 @@ def display_settings():
     st.markdown("**問題フィルター:**")
     
     filter_counts = {
-        "all": len(st.session_state.questions),
         "marked": len(st.session_state.marked_questions),
         "incorrect": len([i for i in st.session_state.history if not st.session_state.history[i]['correct']]),
+        "answered": len(st.session_state.history),
         "unanswered": len(st.session_state.questions) - len(st.session_state.history)
     }
     
     filter_labels = {
-        "all": f"すべて ({filter_counts['all']})",
         "marked": f"⭐マーク ({filter_counts['marked']})",
         "incorrect": f"❌不正解 ({filter_counts['incorrect']})",
-        "unanswered": f"未回答 ({filter_counts['unanswered']})"
+        "answered": f"✅回答済み ({filter_counts['answered']})",
+        "unanswered": f"📝未回答 ({filter_counts['unanswered']})"
     }
     
     # 現在の選択状態を取得
     current_modes = st.session_state.filter_modes.copy()
-    is_all_mode = "all" in current_modes
     
-    # 「すべて」のチェックボックス
-    all_checked = st.checkbox(
-        filter_labels["all"],
-        value=is_all_mode,
-        key="filter_all"
-    )
-    
-    # その他のフィルター（「すべて」がチェックされている場合は無効化しない）
+    # フィルターのチェックボックス
     col1, col2 = st.columns(2)
     with col1:
         marked_checked = st.checkbox(
@@ -587,32 +582,35 @@ def display_settings():
             key="filter_incorrect"
         )
     
-    unanswered_checked = st.checkbox(
-        filter_labels["unanswered"],
-        value="unanswered" in current_modes,
-        key="filter_unanswered"
-    )
+    col3, col4 = st.columns(2)
+    with col3:
+        answered_checked = st.checkbox(
+            filter_labels["answered"],
+            value="answered" in current_modes,
+            key="filter_answered"
+        )
+    with col4:
+        unanswered_checked = st.checkbox(
+            filter_labels["unanswered"],
+            value="unanswered" in current_modes,
+            key="filter_unanswered"
+        )
     
     # フィルターの更新
     new_modes = set()
     
-    # 個別フィルターが選択された場合は「すべて」を解除
-    has_specific_filter = marked_checked or incorrect_checked or unanswered_checked
+    if marked_checked:
+        new_modes.add("marked")
+    if incorrect_checked:
+        new_modes.add("incorrect")
+    if answered_checked:
+        new_modes.add("answered")
+    if unanswered_checked:
+        new_modes.add("unanswered")
     
-    if all_checked and not has_specific_filter:
-        # 「すべて」のみがチェックされている場合
-        new_modes.add("all")
-    elif has_specific_filter:
-        # 個別フィルターが1つ以上チェックされている場合
-        if marked_checked:
-            new_modes.add("marked")
-        if incorrect_checked:
-            new_modes.add("incorrect")
-        if unanswered_checked:
-            new_modes.add("unanswered")
-    else:
-        # 何も選択されていない場合は「すべて」を選択
-        new_modes.add("all")
+    # 何も選択されていない場合はデフォルト（回答済みと未回答）に戻す
+    if not new_modes:
+        new_modes = {"answered", "unanswered"}
     
     if new_modes != st.session_state.filter_modes:
         st.session_state.filter_modes = new_modes
