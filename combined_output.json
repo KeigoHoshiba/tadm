@@ -1,0 +1,3719 @@
+[
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "トランザクションSCCLNでローカルクライアントコピーを実行する場合、どのクライアントでクライアントコピーを開始するのが推奨されますか？",
+    "options": [
+      {
+        "text": "ソースクライアントともターゲットクライアントとも異なるクライアント",
+        "status": "correct"
+      },
+      {
+        "text": "ソースクライアント",
+        "status": "incorrect"
+      },
+      {
+        "text": "ターゲットクライアント",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「コピー先を選べばいいんです」\nSSCLN：SAPシステム内でクライアントのデータをコピーするためのトランザクションコード。\nターゲットクライアント：データをコピー先とするクライアントです。通常、データのコピーが行われる先のクライアントを指す。\n\nSSCLNの使い方：ターゲットクライアントにログオンし、トランザクションSCCLNを実行し、適切なプロファイルと設定を選択してコピーを実行する。\n修正：実行場所はソースでもターゲットでもないクライアント\nTADM12_1 p.308"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "セーブポイントはどのように発動するのですか？  注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "デルタマージを実行することによって",
+        "status": "incorrect"
+      },
+      {
+        "text": "データベースのソフトシャットダウンによって",
+        "status": "correct"
+      },
+      {
+        "text": "データベースのバックアップを実行することによって",
+        "status": "correct"
+      },
+      {
+        "text": "トランザクションコミットを発行することによって",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「セーブポイント、Shut・Up」\nセーブポイント：データベースの現在の状態をディスクに書き込むことで、障害が発生した場合でもデータを復元できるようにするためのもの。DBに関連するのが正解。\nソフトシャットダウン時には「データを確実に保存する」ために、バックアップ時には「最新のデータを保存する」ためにセーブポイントがトリガーする。\n\nデルタマージ：メインストレージとデルタストレージのデータを一つにまとめるプロセス。セーブポイントはトリガーしない。\nトランザクションコミット：特定のトランザクションを完了し、データベースにその変更を反映させる操作のこと。セーブポイントはトリガーしない。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "次のバックグラウンドジョブのうち、優先順位が最も低いものはどれですか？",
+    "options": [
+      {
+        "text": "ターゲットサーバーを使用しないクラスCジョブ",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「ターゲットもいないCクラスが最下位です」\n・クラスA (最高優先度)\n・クラスB (中間優先度)\n・クラスC (通常優先度)\n「ターゲット・サーバーを持つ」＝「特定のサーバで実行したい」という意味"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP Web Dispatcher を構成し、次のように設定しました。\n• wdisp/ssl_encrypt=2\n• icm/server_port_<xx>=...PROT=HTTP\nどのようなコミュニケーション・チャンネルが確立されますか？",
+    "options": [
+      {
+        "text": "クライアントとSAP Web Dispatcher間のHTTPS、SAP Web DispatcherとSAPシステム間のHTTPS",
+        "status": "incorrect"
+      },
+      {
+        "text": "クライアントとSAP Web Dispatcher間はHTTPS、SAP Web DispatcherとSAPシステム間はHTTP。",
+        "status": "incorrect"
+      },
+      {
+        "text": "クライアントとSAP Web Dispatcher間はHTTP、SAP Web DispatcherとSAPシステム間はHTTPS",
+        "status": "incorrect"
+      },
+      {
+        "text": "クライアントとSAP Web Dispatcher間のHTTP、SAP Web DispatcherとSAPシステム間のHTTP",
+        "status": "correct"
+      }
+    ],
+    "explanation": "wdisp/ssl_encrypt=2：Web Dispatcherがクライアントからのリクエストを受け取る際にSSL（Secure Sockets Layer）を使用するかどうかを指定する。`2`は「SSLを使用しない」という意味。\nicm/server_port_<xx>=...PROT=HTTP：Web Dispatcherのポート番号とそのプロトコルを指定する。PROT=HTTPは HTTPプロトコルを使用することを意味する。\n\n※SSLを使用しない → HTTPという意味。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP HANAデータベースシステムを再起動する際の、次の4つのステップの正しい順序は？",
+    "options": [
+      {
+        "text": "1. 行ベースのテーブルがメモリにロードされる。 \n2. オープン・トランザクションが回復される。\n3. 中断されたトランザクションはロールバックされる。 \n4. 列テーブルがロードされる。",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「頭文字『行オ中列』」\n１．行テーブルが最初にロードされることで、データベースの基本的なデータ構造がメモリに配置される。\n２．次に、オープンな取引を復旧することで、システムが中断された取引を再開できる状態にする。\n３．中断された取引をロールバックすることで、データの一貫性を保つための準備が整う。\n４．最後に、カラムテーブルをロードすることで、データベースの全体的なデータがメモリに配置され、システムが完全に稼働状態に戻る。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "HDBLCMツールを使用してSAP HANAデータベースシステムをバッチモードでインストールする場合、どのパラメータが必須ですか？ 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "データとログの保存場所",
+        "status": "incorrect"
+      },
+      {
+        "text": "SAP HANAシステムID（SID）",
+        "status": "correct"
+      },
+      {
+        "text": "sapadmユーザのパスワード",
+        "status": "correct"
+      },
+      {
+        "text": "ソフトウェアをインストールするパス",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "HDBLCM：SAP HANAデータベースシステムのインストール、更新、管理を行うためのツール。\nバッチモード：ユーザーの介入なしに自動的に処理を進めるモードのこと。\n\nバッチのインストールには「S(System Identifier) P(Password)!!」\nデータとログのパスはインストール後に設定することができ、必須ではない。\nシステム固有の識別子であるSIDと管理者ユーザのパスワードが必要。\nインストールパスはデフォルトで設定済み、必須ではない。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "AS ABAPベースのSAPシステムを送信メール用に構成するには、どの手順が必須ですか？  注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "デフォルトドメインを維持する。\n（トランザクション：SCOT）",
+        "status": "correct"
+      },
+      {
+        "text": "SMTPノードを維持し、アクティブ化する。\n（トランザクション：SCOT）",
+        "status": "correct"
+      },
+      {
+        "text": "ICF内の SAPconnect ノードを維持し、アクティブ化する。\n（トランザクション：SICF）",
+        "status": "incorrect"
+      },
+      {
+        "text": "権限プロファイルS_ASCONを持つシステムユーザを作成する。\n（トランザクション：SUD1）",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "\"メール\"は「SCOT」！！\n\nSICF：ICF（Internet Communication Framework)を使用して、Webサービスやインターネットプロトコルを設定する。\nSCOT：メールを送信するためのプロトコルを設定する。デフォルトドメインとは送信メールに使用されるドメインのこと。\nSUD1：特定の認証プロファイル（S_ASCON）を持つシステムユーザーを作成する。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "AS ABAPベースのSAPシステムにおけるバックグラウンドジョブの開始条件は何ですか？ 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "特定の日時に到達する",
+        "status": "correct"
+      },
+      {
+        "text": "イベントの発生",
+        "status": "correct"
+      },
+      {
+        "text": "クライアント000でユーザーDDICをロックすること",
+        "status": "incorrect"
+      },
+      {
+        "text": "動的ワークプロセスの開始",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "※覚えやすいので、こういうもんだと覚えましょう。\nユーザーDDIC：SAPシステムにおける特権ユーザのこと。このユーザをロックすることがジョブの開始条件とはならない。\n動的ワークプロセス： 動的ワークプロセスの開始はシステムの内部的なプロセス管理に関するものであり、バックグラウンドジョブの開始条件とは異なる。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAPシステムのデータベースへの接続を確立するプロセスを持っているインスタンスはどれですか？ 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "プライマリアプリケーションサーバー",
+        "status": "correct"
+      },
+      {
+        "text": "セントラルサービス",
+        "status": "incorrect"
+      },
+      {
+        "text": "追加アプリケーションサーバ",
+        "status": "correct"
+      },
+      {
+        "text": "エンキュー レプリケーション サーバー",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「DBとやり取りする奴は、実際に動くやつら(PAS/AAS)」\n※Primary Application Server (PAS)とAdditional Application Server (AAS)は ユーザーリクエストを処理しデータベースと直接通信する。\n※Central Services (CS)とEnqueue Replication Server (ERS)は データベースと直接接続しない。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP HANA 2.0データベースシステムのデータボリュームとログボリュームでサポートされているファイルシステムはどれですか。 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "OCFS2",
+        "status": "incorrect"
+      },
+      {
+        "text": "Bufs",
+        "status": "incorrect"
+      },
+      {
+        "text": "GRFS",
+        "status": "correct"
+      },
+      {
+        "text": "XFS",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「グリンピース(GPFS)はX(FS)ですよ」\nOCFS2 (Oracle Cluster File System 2)：Oracleが提供するクラスタファイルシステム。\nBufs：一般的に知られているファイルシステム。\nGPFS (General Parallel File System)：IBMが提供する高性能でスケーラブルなファイルシステム。「General」なので大規模なSAPのデータにも対応、と覚える。\nXFS：高性能でスケーラブルなファイルシステム。Xは「eXtended」の意味、拡張性があってSAPにも合ってる、と覚える。\n\n※その他にEXT3やNFSもサポートされている。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "アプリケーションサーバーホストとして s4xhost を、データベースホストとして haxhost を使用して、SAP S/4HANA Server 2021 システムをインストールしています。 Software Provisioning Manager（SWPM）はどのアクションを実行できますか？ 注: この質問には ３つの正解があります。",
+    "options": [
+      {
+        "text": "セントラルサービスのインスタンスをs4xhostにインストールする",
+        "status": "correct"
+      },
+      {
+        "text": "haxhost上で動作しているデータベースのインポートパラメータを設定する",
+        "status": "correct"
+      },
+      {
+        "text": "データベースのバックアップメディアをs4xhostからhaxhostにコピーする。",
+        "status": "incorrect"
+      },
+      {
+        "text": "データベースのインストールメディアをs4xhostからhaxhostにコピーする。",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「長い文章題で混乱するけど、バックアップとDBのインストールは絶対しない。」\n※Software Provisioning Manager（SWPM）がどのようなアクションを実行できるかについて問うている。\nSWPM：SAPシステムのインストール、コピー、変換などを支援するツール。\nバックアップやリストア、DBそのもののインストールは実行できない。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "移送依頼をインポートする際に使用するツールはどれか。 注: この質問には ３つの正解があります。",
+    "options": [
+      {
+        "text": "R3trans",
+        "status": "correct"
+      },
+      {
+        "text": "RDDIMPDP",
+        "status": "correct"
+      },
+      {
+        "text": "R3load",
+        "status": "incorrect"
+      },
+      {
+        "text": "TP",
+        "status": "correct"
+      }
+    ],
+    "explanation": "※開発やカスタマイズされたオブジェクトを一つのシステムから別のシステムへ移動する必要がある場合に「移送依頼」を使用します。\n\nR3trans：オペレーティングシステムレベルでデータをSAPシステム間で移動するための移送ツール。\nRDDIMPDP：移送のインポートプロセスに関与するバックグラウンドジョブ。移送依頼のインポート中に使用される。IMPDP（インポートディスパッチャという意味）\nR3load：SAPシステムのインストールやアップグレード時にデータベースのデータをロードするために使用されるツール。\nTP：SAPの移送制御プログラムで、移送依頼のエクスポートとインポートを管理する。TPはR3transを呼び出してデータの移動を行う。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "AS JavaベースのSAPシステム・インスタンスの起動手順を開始するオペレーティング・システム・プロセスはどれですか？",
+    "options": [
+      {
+        "text": "Saphostexc",
+        "status": "incorrect"
+      },
+      {
+        "text": "Sapstartssrv",
+        "status": "incorrect"
+      },
+      {
+        "text": "Sapcpe",
+        "status": "incorrect"
+      },
+      {
+        "text": "jStart",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「AS Javaの起動は j が付くやつ！」\nSaphostexec：SAP Host Agentの一部。SAPシステムのホストを管理するためのプロセスでステータスの監視や起動・停止をサポート。\nSapstartssrv：SAP Start Serviceの略。 SAPインスタンスの起動コマンドを受け取り、起動プロセスを制御する。\nSapcpe：SAP Copy Program for Executablesの略。SAPシステムの実行ファイルのコピーや更新を行う。\njStart：Javaインスタンスコントローラであり、JavaベースのSAPシステムにおけるインスタンスを起動する。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "ユーザーの SAP Fiori Launchpad に SAP Fiori Spaceを追加したいとします。 SAP Fiori Space を何に割り当てる必要がありますか。",
+    "options": [
+      {
+        "text": "ユーザーに割り当てられた役割（ロール）に割り当てる。",
+        "status": "correct"
+      },
+      {
+        "text": "ユーザーに割り当てられたユーザーグループに割り当てる。",
+        "status": "incorrect"
+      },
+      {
+        "text": "ユーザーのパラメータIDに割り当てる",
+        "status": "incorrect"
+      },
+      {
+        "text": "ユーザーに割り当てられた認証プロファイルに割り当てる。",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「ラウンチパッド・ロール、同じラ行」\nSAP Fiori Space：Fiori Launchpad内でアプリケーションやタイルを整理するための領域を提供する。\nSAP Fiori Launchpadの設定はユーザーのロール（役割）に基づいて行われるため、Fiori Spaceもロールに割り当てる必要がある。\n\nユーザーグループ：一般的にユーザーの分類や管理に使用する。\nパラメータID：ユーザー固有の設定やパラメータの保存に使用する。\n認可プロファイル：ユーザーの権限を定義するために使用する。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP Fiori launchpad はユーザーのために機能しています。 アプリファインダーでSAP Easy Accessメニューにアクセスできるようにするにはどうすればよいですか。 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "HTTP宛先タイプHを提供する\n（FIORI_CLASSICUI HTTPS、トランザクションSM59）",
+        "status": "incorrect"
+      },
+      {
+        "text": "トランザクションSEARCH SAP MENUを開始する権限を割り当てる",
+        "status": "incorrect"
+      },
+      {
+        "text": "正しいターゲットマッピングを割り当てる。\n（カタログ/UI2/CLASSICAL_GUI_MENU経由で提供）",
+        "status": "correct"
+      },
+      {
+        "text": "SAP Fiori Launchpadの設定を適用する\n（トランザクション/UI2/FLP_SYS_CONFまたは/UI2/FLP_CUS_CONF）",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「EasyAccess「メニュー」には、探さないMENUとConfigです」\nFIORI_CLASSICUI HTTPS：HTTP宛先を設定するためのもの。SM59はSAPシステム間の通信を設定するためのトランザクション。\nSEARCH SAP MENU：ユーザーに特定のトランザクションを実行する権限を与える。\nターゲットマッピング：特定のアプリケーションや機能に対するナビゲーションを定義するもの。\n/UI2/FLP_SYS_CONFまたは/UI2/FLP_CUS_CONF：Fiori Launchpadのシステム全体またはカスタム設定を行うためのもの。SAP Easy Accessメニューに対する設定を含む。\nSYS_CONF/CUS_CONF: TADM10_2 p.622、CLASSICAL_GUI_MENU: p.624"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP Fiori カタログの作成に使用できるツールは？ 注: この質問には ３つの正解があります。",
+    "options": [
+      {
+        "text": "SAPフロント・ローンチパッドの設定\n（/UI2/FLP_CUS_CONF）",
+        "status": "incorrect"
+      },
+      {
+        "text": "SAP Fioriローンチパッド・アプリケーション・マネージャー（/UI2/FLPAM）",
+        "status": "correct"
+      },
+      {
+        "text": "SAP Fiori起動コンテンツマネージャー\n（/UI2/FLPCM_CUST）",
+        "status": "correct"
+      },
+      {
+        "text": "SAP Fioriローンチパッドデザイナー\n（/UI2/FLPD_CUST）",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「強そうな人を選びましょう。マネージャー・マネージャー・デザイナー」\n/UI2/FLPCM_CUST：ビジネスカタログ(エンドユーザーが日々使用するアプリケーションや機能をまとめたもの) の管理を容易にするために使用。\n/UI2/FLPAM：技術カタログの作成(システムの背後で動作する技術的な要素や設定を含む)\n/UI2/FLP_CUS_CONF：ランチパッドの設定に使用。\n/UI2/FLPD_CUST：カタログやグループの作成に使用\nTADM10_1: p.447"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "データベースシステム全体をバックアップするために、SAP HANAコックピットでどのような操作を実行できますか？",
+    "options": [
+      {
+        "text": "システム・データベースとすべてのテナント・データベースを個別にバックアップする",
+        "status": "correct"
+      },
+      {
+        "text": "システム・データベースと全テナント・データベースをワンステップでバックアップする",
+        "status": "incorrect"
+      },
+      {
+        "text": "各データベースのフォールバック・スナップショットを使用してシステムをバックアップする",
+        "status": "incorrect"
+      },
+      {
+        "text": "データスナップショットを使用してシステムをバックアップする。",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「バックアップは個別に！」\nSAP HANACockpit：SAP HANAデータベースの管理と監視を行うためのツール。\n※現在のSAP HANA Cockpitの機能では、システムデータベースとテナントデータベースを個別にバックアップする必要がある。\n\n※一度にシステム全体をバックアップする機能やフォールバックスナップショットという機能は存在しない。\n※データスナップショットは部分的なバックアップに使用されることが多く、完全なシステムバックアップには適していない。\nP.352"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "組み込みデプロイメントでは、オブジェクトページがSAP S/4HANAシステムにアクセスするためにどのプロトコルを使用しますか？",
+    "options": [
+      {
+        "text": "RFC",
+        "status": "incorrect"
+      },
+      {
+        "text": "InA",
+        "status": "incorrect"
+      },
+      {
+        "text": "OData",
+        "status": "correct"
+      },
+      {
+        "text": "DIAG",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "RFC：Remote Function Call。SAPシステム間でリモート関数を呼び出すためのプロトコル\nInA：Information Access。情報アクセスプロトコルで、主に分析データのアクセスに使用される。\nOData：Open Data Protocol。RESTベースのプロトコルで、データのCRUD操作をHTTP経由で行うために広く使用される。\nDIAG：Dynamic Information and Action Gateway。古いSAP GUI通信プロトコルで、現代のWebベースのUIとは無関係。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP Solution Manager ABAP のインストール中に、SAPinst が SAP Solution Manager Java に推奨するユーザ ID は次のどれですか? 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "SAP",
+        "status": "incorrect"
+      },
+      {
+        "text": "Administrator",
+        "status": "incorrect"
+      },
+      {
+        "text": "J2EE_ADMIN",
+        "status": "correct"
+      },
+      {
+        "text": "SAPJSF",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「SAPintがソルマネ、じぇ(J2EE)じぇ(JSF)じぇ」\nSAP Solution Manager：システム管理や監視を行うためのツール。ABAPスタックとJavaスタックの2つの種類がある\nSAPint：SAPのインストールツール\n\nSAP：一般的なSAPシステムの関連するデフォルトのシステムユーザID。\nAdministrator：一般的な管理者ユーザID。システム全体に対してはよく使うけど、特定のコンポーネントに対する使用は珍しい。\nJ2EE_ADMIN：SAP SMJ に特有の管理者ユーザーID。\nSAPJSF：SAP Java Stack FrameworkユーザーID。SAP SMJの一部として必要なユーザー\np.81"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP HANAセキュアユーザストア（hdbuserstore）の目的は何ですか？ 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "SAP HANAのXS Advancedエンジンに接続情報を保存するため",
+        "status": "incorrect"
+      },
+      {
+        "text": "3層シナリオにおいて、フェイルオーバーサポートを構成するため",
+        "status": "correct"
+      },
+      {
+        "text": "SAP HANAデータベースクライアントに接続情報を保存するため",
+        "status": "correct"
+      },
+      {
+        "text": "フォルトリカバリーのためにSAP HANAの自動再起動を構成するため。",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「セキュアなストアは３クライアント」\nSAP HANA Secure User Store (hdbuserstore)：SAP HANAシステムに接続するための情報を安全にクライアント側に保存し、3層シナリオでのフェイルオーバーサポートを構成するためのツール。\n※ hdbuserstoreによって、クライアントアプリケーションがユーザーに接続情報を入力させることなく SAP HANAに接続できるようになる。\nHA200: p.193"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAPのRFCプロトコルは、次のどのプロトコルに基づいていますか？ 注：この質問には2つの正解があります。",
+    "options": [
+      {
+        "text": "OData",
+        "status": "incorrect"
+      },
+      {
+        "text": "CPI-C",
+        "status": "correct"
+      },
+      {
+        "text": "TCP/IP",
+        "status": "correct"
+      },
+      {
+        "text": "EDI",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "RFC：Remote Function Call。RFCは異なるSAPシステム間またはSAPと外部システム間で通信を行うためのインターフェースである。\nOdata：Open Data Protocol。Webベースのデータアクセスプロトコル。主にHTTPを介してデータを取得するために使用される。\nCPI-C：Common Programming Interface for Communication。アプリケーション間の通信を行うためのインターフェース。特にSAPシステム間の通信で使用される。\nTCP/IP：Transmission Control Protocol/Internet Protocol。インターネットやローカルネットワークでデータを転送するための基本的な通信プロトコル。\nEDI：Electronic Data Interchange。企業間でビジネス情報を電子的に交換するための標準化されたフォーマットのこと。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "移送管理システム（TMS）における「移送グループ」の定義とは？",
+    "options": [
+      {
+        "text": "同じ移送ディレクトリを共有するSAPシステムの集まり",
+        "status": "correct"
+      },
+      {
+        "text": "同じ移送ドメインコントローラによって制御されるSAPシステムの集まり",
+        "status": "incorrect"
+      },
+      {
+        "text": "同じ移送ターゲットグループに割り当てられているSAPシステムの集まり",
+        "status": "incorrect"
+      },
+      {
+        "text": "移送ルートで結ばれたSAPシステムの集合体",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「移送グループは『ディレクトリ』(が大事)」\nTMS：SAPシステム間でのデータやオブジェクトの転送を管理するシステム。具体的には、TMSを使って開発システムから品質保証システム、そして本番システムへと変更やアップデートを伝播できる。\n移送グループ：同じ移送ディレクトリを共有するSAPシステムの集まり。移送ディレクトリはSAPシステム間でデータを転送する際に使用されるフォルダ。\n移送ドメイン：TMSによって一元的に管理されるSAPシステムの集まり\nTADM12_1: p.72"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "システム開始時、AS JavaベースのSAPシステムにおける正しいパラメータ評価順序は何ですか？",
+    "options": [
+      {
+        "text": "1. テンプレートのデフォルト",
+        "status": "correct"
+      },
+      {
+        "text": "2. インスタンスのデフォルト",
+        "status": "correct"
+      },
+      {
+        "text": "3. テンプレートカスタム",
+        "status": "correct"
+      },
+      {
+        "text": "4. インスタンスカスタム",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「こういうもんだ」と覚えてもらった方が早い\nTADM10_2: p.177 だとテンプレデフォ→テンプレカスタム→インスタデフォ→インスタカスタム"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP Solution Manager Java をインストールする際、どのような情報を提供する必要がありますか。 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "外部AS ABAPベースのSAPシステムをUMEデータソースとして使用するという決定",
+        "status": "correct"
+      },
+      {
+        "text": "SCS インスタンスに統合された SAP Gateway をインストールするかどうかの決定",
+        "status": "incorrect"
+      },
+      {
+        "text": "追加言語インストールメディアのパッケージパス",
+        "status": "incorrect"
+      },
+      {
+        "text": "SAP JVM 用アーカイブのパッケージパス",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「ソルマネのインストールには、うめぇ(UME)アーカイブ」\nSAP Solution Manager：SAP環境の管理と運用をサポートするツール。\nUME：User Management Engine。SAPシステムのユーザー管理を行うためのコンポーネント。外部のAS ABAPのSAPシステムをUMEデータソースとして使用するかどうかを決める必要がある。TADM12_2: p.154\nSAP Gateway：異なるプロトコル間の通信を可能にするためのコンポーネント。（SCS インスタンスに統合するかどうかの決定は、Javaスタックのインストール時に必須ではない。）\nSAP JVM：JavaベースのSAPシステムを実行するために必要なコンポーネント。そのアーカイブへのパスを提供する必要がある。\nTADM12_2: p.98"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "Support Package Manager (トランザクション SPAM) を使用して SAP Support Package Stack をインポートしています。 SAPシステムのダウンタイムが必要な手順はどれですか? 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "辞書オブジェクトの修正調整（SPDD）",
+        "status": "incorrect"
+      },
+      {
+        "text": "他のオブジェクトの修正調整（SPAU）",
+        "status": "correct"
+      },
+      {
+        "text": "非活動状態の辞書オブジェクトのインポート（DD IMPORT）",
+        "status": "incorrect"
+      },
+      {
+        "text": "辞書オブジェクトの活性化（DD ACTIVATION）",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「SPAMのインポート、酸っぱく(SAPU)・アクティベーション(DD ACTIVATION)」\nSupport Package Stack：SAPシステムのバグ修正や機能追加を行うためのパッケージ群。インポートには「Support Package Manager (SPAM)」というトランザクションを使用する。\nサポートパッケージ：SAPシステムのソフトウェアに対する修正や機能強化をまとめたパッケージ。定期的にインポートすることで、システムを最新の状態に保つ。\n辞書オブジェクト：SAPシステムのデータ辞書に関するオブジェクト（テーブル、インデックス、ビューなど）のこと。非活動状態とは「まだ使われていない」ということ\nダウンタイム：システムが一時停止すること\n\nSPDD：サポートパッケージをインポートする際に、これらの辞書オブジェクトに対するカスタム変更を調整するプロセス。DBに修正が入ってもシステムは継続して使用できる。\nSPAU：辞書オブジェクト以外のオブジェクト（プログラム、モジュールなど）に対するカスタム変更を調整するプロセス。システムに影響があるためダウンタイムを要する。\nDD ACTIVATION：辞書オブジェクトを使用可能にするプロセス。使用可能になる・ならないでシステムに影響するため、ダウンタイムを要する。\n\nTADM12_1: p.267"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "あなたはAS ABAPベースのSAPシステムを実行しています。 ICMプロセスのインターネット・サーバー・キャッシュ（ISC）はどの部分で構成されていますか。  注: この質問には ３つの正解があります。",
+    "options": [
+      {
+        "text": "UFOキャッシュ",
+        "status": "correct"
+      },
+      {
+        "text": "ディスクキャッシュ",
+        "status": "correct"
+      },
+      {
+        "text": "CPUキャッシュ",
+        "status": "incorrect"
+      },
+      {
+        "text": "メモリーキャッシュ",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「UFO、ディスクみたい。メモリー」\nICM：SAPシステムがHTTP、HTTPS、SMTPなどのプロトコルを介して外部と通信できるようにするためのプロセス。\nISC：ICMの一部であり、Webブラウザに送信される前にHTTP(S)オブジェクトをキャッシュすることで、次のリクエスト時に高速に応答できるようにする。\n\nICMの一部に「UFOキャッシュ」「メモリキャッシュ」「ディスクキャッシュ」がある。\nUFOキャッシュ：「UnFound Objects」という意味。無効なリクエスト（存在しないオブジェクトに対するリクエスト）を保存し、システムが無効なリクエストによって負荷を受けるのを防ぐ。\nメモリキャッシュ：メインメモリを使用してキャッシュする方法で、高速なアクセスが可能\nディスクキャッシュ：ハードディスクを使用してキャッシュする方法で、大量のデータを格納できる。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "AS ABAPベースのSAPシステムでは、ロックテーブルはどこに格納されていますか？",
+    "options": [
+      {
+        "text": "プライマリアプリケーションサーバインスタンスのホストのメインメモリ",
+        "status": "incorrect"
+      },
+      {
+        "text": "プライマリアプリケーションサーバインスタンスのファイルシステム",
+        "status": "incorrect"
+      },
+      {
+        "text": "SAPシステムのデータベース",
+        "status": "incorrect"
+      },
+      {
+        "text": "セントラルサービスインスタンスのホストのメインメモリ",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「大事なところにおいておく」\nロックテーブル：SAPシステム内でデータの一貫性を保つために使用される。同じデータレコードが複数のユーザーによって同時に変更されることを防ぐ。ASCSのホストのメインメモリに格納する。\nASCS：ABAP Central Services Instance。ロック管理を含むSAPシステムのサービスを集中的に提供するためのインスタンス。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP Fiori トランザクションアプリの初期認証を通過しました。 このアプリの後続の OData 呼び出しには、どの認証技術が使用されますか。",
+    "options": [
+      {
+        "text": "SAPログオンチケット",
+        "status": "incorrect"
+      },
+      {
+        "text": "X.509 クライアント証明書",
+        "status": "incorrect"
+      },
+      {
+        "text": "ABAPセッションセキュリティ",
+        "status": "correct"
+      },
+      {
+        "text": "SAML2.0",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "※ この問題は最初の認証が成功した後に、そのアプリがバックエンドシステムに対して行うODataリクエストの認証方法が何かについて問うている。\n\nSAPログオンチケット：SAPシステム内でのシングルサインオン(SSO)を実現するための技術。ユーザーが一度認証されると、その後のシステム間のアクセスにも同じ認証情報が使われる。\nX.509クライアント証明書：公開鍵基盤(PKI)を使ってユーザーを認証するための証明書。特にインターネットを介したシナリオで有効である。\nABAPセッションセキュリティ：ABAPサーバー上でセッションの安全性を確保するための技術。\nSAML 2.0：セキュリティアサーションマークアップ言語のバージョン2.0。シングルサインオン(SSO)を実現するための標準プロトコル。\n\nABAPセッションセキュリティ以外は一般に「初期認証」で使用される。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "標準的なSAP HANAデータベースシステムのインストールを実行する場合、インストール中にどのユーザーが作成または検証されますか？ 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "SAP<SID>",
+        "status": "incorrect"
+      },
+      {
+        "text": "<sid>crypt",
+        "status": "incorrect"
+      },
+      {
+        "text": "Sapadm",
+        "status": "correct"
+      },
+      {
+        "text": "SYSTEM",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「SID・cryptが出たら『それ以外(を選ぶ)』と覚える」\n※ SAP HANAのインストール時には、いくつかの特定のユーザーが自動的に作成されるか、既存のユーザーが検証されるプロセスがある。\nSAP<SID>：このユーザは存在しない。\n<sid>crypt：Local Secure Store (LSS)に関連しており、暗号化キーや他の敏感なデータを管理する。標準インストール時に作成されるわけではない。\nSapadm：SAPホストエージェントの管理者ユーザー。SAPホストエージェントがインストールされる際に自動的に作成される。\nSYSTEM：データベースのスーパーユーザー。すべてのシステム権限を持つ。標準インストール中に必ず作成される。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SYSTEMDB Manage ServicesアプリからSAP HANAコックピットで停止できるサービスはどれですか？ 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "プリプロセッサ",
+        "status": "correct"
+      },
+      {
+        "text": "インデックスサーバ",
+        "status": "incorrect"
+      },
+      {
+        "text": "コンパイルサーバ",
+        "status": "correct"
+      },
+      {
+        "text": "デーモン",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "SAP HANA Cockpit：SAP HANAデータベースの監視と管理を行うためのウェブベースのツール。\nSYSTEMDB：SAP HANAシステム全体を管理する中央のデータベース\nManage Servicesアプリ：SYSTEMDB内の各種サービスの状態を監視し、特定のサービスを停止または再起動する。\n\n「止めても良いかな（重くない処理）が正解です」\nPre processor：データの前処理を行うサービス。\nIndex server：データの保存と検索を行う主要なサービス。データの保存という中核的な役割なので停止できない。\nCompile server：SQLスクリプトやストアドプロシージャのコンパイルを行うサービス。\nDaemon：システム全体の管理を行うデーモンプロセス。システム全体の管理という中核的な役割なので停止できない。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "AS ABAPベースのSAPシステムのセントラル・サービス・インスタンスの一部として、オプションで実行できるプロセスはどれですか？ 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "メッセージサーバ",
+        "status": "incorrect"
+      },
+      {
+        "text": "RFCゲートウェイ",
+        "status": "correct"
+      },
+      {
+        "text": "SAP Web ディスパッチャ",
+        "status": "correct"
+      },
+      {
+        "text": "エンキュ―サーバ",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "※セントラルサービスインスタンスに備わっているもの中で、オプション（必須でない）であるもののみが回答であることに注意。\n\n「必須は ME !!」\nセントラル サービス インスタンス\n   - 必須プロセス: Message Server(システム内のAS間の通信監理), Enqueue Server(ロック管理によるDBの一貫性保持)\n   - オプションプロセス: RFC Gateway(システム間でRFCを実行するGW), SAP Web Dispatcher(HTTPリクエストを適切なサーバにルーティングする)\nTADM10_1 p.115"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "HTTPURLLOCテーブルを管理することで何が設定できますか？",
+    "options": [
+      {
+        "text": "クラシック・アプリケーションが使用するURL",
+        "status": "incorrect"
+      },
+      {
+        "text": "トランザクション/U12/FLPによって起動されたURLのホスト名",
+        "status": "correct"
+      },
+      {
+        "text": "ユーザー支援リソース用のローカルWebサーバーのURL",
+        "status": "incorrect"
+      },
+      {
+        "text": "トランザクションU12/FLPによって起動されたURLのパス",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「HTTPURLLOCの文字が出てきたら『ホスト名』を選べ」\nHTTPURLLOCテーブル：ABAPシステムがURLを生成する際に使用するプロトコル、ホスト名、およびポートを決定するために使用する。（パスは対象外。）\nHTTPURLLOCは主にSAP FioriやSAP Web Dispatcher関連の設定に使用される。\n\n※ /UI2/FLP: SAP Fiori Launchpadを起動するためのトランザクション。\n※ /UI2/FLPD_CUST: SAP Fiori Launchpad Designerの設定用トランザクション。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "開発システムでABAPタスクリストを作成し、本番システムに移送したいとします。 あなたは何をしなければなりませんか? 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "ワークベンチの移送依頼にタスクリストを割り当てる",
+        "status": "incorrect"
+      },
+      {
+        "text": "タスクリストをアクティブにする",
+        "status": "incorrect"
+      },
+      {
+        "text": "タスクリストをパッケージに割り当てる",
+        "status": "correct"
+      },
+      {
+        "text": "カスタマイズ移送依頼にタスクリストを割り当てる。",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「タスクリスト=設定。設定=カスタマイズ・パッケージ」\nワークベンチの移送依頼：主に開発オブジェクト（プログラム、テーブルなど）の移送に使用される。開発に関連するオブジェクトを管理して、システム間の移送を行う。\nカスタマイズの移送依頼：システム設定やカスタマイズの移送に使用する。システム間で一貫した設定にするために、タスクリストはこちらに割り当てる。\n\nパッケージ：SAPシステム内でオブジェクトを論理的にグループ化するための単位。これにより、関連するオブジェクトをまとめて管理しやすくなる。\nタスクリストをパッケージに割り当てることで、関連する設定変更手順を一つのまとまりとして管理できる。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "AS ABAP ベースの SAP システムで SAPUI5 のパッチレベルを判断するにはどうすればよいですか。",
+    "options": [
+      {
+        "text": "ソフトウェアコンポーネントSAP UIのバージョンを確認する",
+        "status": "correct"
+      },
+      {
+        "text": "プログラム /U15/U15_UPLOAD_PATCH_TO_MIME を使用する",
+        "status": "incorrect"
+      },
+      {
+        "text": "プログラム WDG_MAINTAIN_UR_MIMES を使用する",
+        "status": "incorrect"
+      },
+      {
+        "text": "ICFサービス /sap/public/bc/ui5_ui5 を実行する",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "※パッチレベル=バージョンを見てるのと実質一緒。\n/U15/U15_UPLOAD_PATCH_TO_MIME：SAPUI5のパッチをMIMEリポジトリにアップロードする。パッチレベルを確認するものではない。\nWDG_MAINTAIN_UR_MIMES：MIMEオブジェクトを管理する。パッチレベルを確認するものではない。\n/sap/public/bc/ui5_ui5：ICF（Internet Communication Framework）サービス/sap/public/bc/ui5_ui5を実行する。この方法でも確認できるかも"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "生産性の高いSAP HANAテナントデータベースのリカバリが失敗した場合、どのような状況で再開できますか。 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "デルタ・データ・バックアップのリカバリーの中断",
+        "status": "correct"
+      },
+      {
+        "text": "コンフィギュレーションファイルのリカバリーの失敗",
+        "status": "incorrect"
+      },
+      {
+        "text": "完全なデータ・バックアップのリカバリーの中断",
+        "status": "incorrect"
+      },
+      {
+        "text": "ログバックアップのリカバリーの中断",
+        "status": "correct"
+      }
+    ],
+    "explanation": "要は、完全なデータバックアップとコンフィグのリカバリは事が大きいので失敗NG。\nDeltaデータバックアップ：完全データバックアップの後に行われる増分バックアップ。そのため、リカバリの再開が可能。\nログバックアップ：データベースの操作ログを保存するもので、これが中止された場合でも再度リカバリーを試みることができる。\n\n※設定ファイルのリカバリーが中止された場合は、一般的には設定ファイルが破損している可能性が高く、再開できる状況ではない。\n※完全データバックアップのリカバリーが中止された場合は、もう一度最初からやり直す必要がある。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP HANAデータベースをログモード「通常」で実行しています。 どのような状況で、データベースは自動的に通常のログバックアップを実行しますか？ 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "ログセグメントが一杯になった場合",
+        "status": "correct"
+      },
+      {
+        "text": "コミットが発生した場合",
+        "status": "incorrect"
+      },
+      {
+        "text": "閾値を超えた場合",
+        "status": "correct"
+      },
+      {
+        "text": "ログバッファが一杯になった場合",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "ログバックアップの条件:\n   - ログセグメントが満杯になったとき。\n   - 設定された時間しきい値（log_backup_timeout_s）を超えたとき。\n   - データベースが再起動されたとき。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "AS ABAPベースのSAPシステムにおけるセキュリティポリシーの目的は何ですか？",
+    "options": [
+      {
+        "text": "選択したセキュリティ属性とその値をユーザーに割り当てること",
+        "status": "incorrect"
+      },
+      {
+        "text": "セキュリティに関連するシステムプロファイルパラメータを定義すること",
+        "status": "correct"
+      },
+      {
+        "text": "選択したセキュリティ属性とその値をロールに割り当てること",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「ポリシーは定義する、パラメータを定義する」\nセキュリティポリシー：システムのログオン行動やパスワードルールの変更などのコントロールを行うために設定される。\nこれにより、特定のユーザーやロールに対して適切なセキュリティ属性を割り当て、システム全体のセキュリティを維持することが可能。\nシステム全体 → セキュリティポリシー　特定のユーザ or ロール → セキュリティ属性"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "標準の移送プロトコル設定を使用して、移送リクエストをインポートした後、個々のインポートステップのリターンコードを提供するログファイルはどれですか？ (注: これらの回答は次の略語を使用しています: 年 <YY>、週 <WW>、四半期 <Q>、SAP システム ID <SID>、および 5 桁の数字 <nnnnn>)",
+    "options": [
+      {
+        "text": "ALOG<YY><WW> <SID>",
+        "status": "correct"
+      },
+      {
+        "text": "<SID>E9<nnnnn> <SID>",
+        "status": "incorrect"
+      },
+      {
+        "text": "SLOG<YY><WW> <SID>",
+        "status": "incorrect"
+      },
+      {
+        "text": "ULOG<YY>_<Q>",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "※この系統の問題は『この問題のみ』。なので「ALOG」を選択することを覚えましょう。\n移送リクエスト：開発システムで行った変更をテストシステムや本番システムに移行するためのパッケージのこと\nALOG：すべてのトランスポートステップのリターンコードを記録するログファイル。\nSLOG：特定のSAPシステムにおけるトランスポート活動の全体的な概要を記録するログファイル。\nULOG：すべてのtpコマンド（トランスポートプログラムコマンド）を記録するログファイル。\nTADM12_1: p.224"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP S/4HANA Serverシステムは、ABAP Central Servicesインスタンス、Primary Application Serverインスタンス、および2つのAdditional Application Serverインスタンスで構成されています。 完全なシステム起動中に、このSAPシステムで評価されるシステムプロファイルファイルの数はいくつですか?",
+    "options": [
+      {
+        "text": "3",
+        "status": "incorrect"
+      },
+      {
+        "text": "5",
+        "status": "correct"
+      },
+      {
+        "text": "9",
+        "status": "incorrect"
+      },
+      {
+        "text": "4",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「必要なプロファイル数 = デフォルトインスタンス + インスタンスの個数」\n(今回の場合) = デフォルトプロファイル + ASCS, PAS, AAS*2 = 5  "
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "AS ABAPベースのSAPシステムにおいて、ユーザーの権限を含むエンティティはどれか。",
+    "options": [
+      {
+        "text": "認証プロファイル",
+        "status": "incorrect"
+      },
+      {
+        "text": "認証オブジェクト",
+        "status": "correct"
+      },
+      {
+        "text": "単一ロール",
+        "status": "incorrect"
+      },
+      {
+        "text": "コンポジットロール",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "認証オブジェクト < 認証プロファイル < 単一ロール < コンポジットロール\n認証プロファイル：ユーザーに割り当てられる一連の認証オブジェクトのセット。ユーザが特定のアクションを実行するための許可を持つことができる。\n認証オブジェクト：ユーザーが特定のタスクを実行するために必要な権限を定義する基本単位。\n単一ロール：一つの役割を定義し、多くの認証プロファイルや認証オブジェクトを含むことできる。ユーザーにこのロールを割り当てることで複数の権限を一度に付与することができる。\nコンポジットロール：複数のシングルロールをまとめて一つのロールにしたもの。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAPシステムおよびSAPインスタンスを起動または停止するコマンドラインツールは、次のうちどれですか？",
+    "options": [
+      {
+        "text": "SAPControl",
+        "status": "correct"
+      },
+      {
+        "text": "JSmon",
+        "status": "incorrect"
+      },
+      {
+        "text": "SAP MC",
+        "status": "incorrect"
+      },
+      {
+        "text": "Icmon",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「起動停止でSAPをコントロール」\nSAPControl：SAPシステムのインスタンスを開始、停止、または監視するためのコマンドラインツール。このツールは、SAPの管理タスクを自動化したり、スクリプトで実行したりする際に使用される。\nJsmon：SAPのJavaスタックのモニタリングツールであり、システムの起動や停止には直接関与しない。\nSAP MC：SAP Management Console。SAPシステムのインスタンスを開始、停止、または監視することはできるが、コマンドラインツールではない。\nIcmon：SAPのインターフェースモニタリングツールであり、システムの起動や停止には直接関与しない。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "システムデータベース管理者は、どのようにテナントデータベースの機能を無効にできますか？ 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "「Manage Restricted Features」アプリを使用する",
+        "status": "incorrect"
+      },
+      {
+        "text": "hdbuserstoreツールを使用する",
+        "status": "incorrect"
+      },
+      {
+        "text": "「Manage Database Configuration」アプリを使用する",
+        "status": "correct"
+      },
+      {
+        "text": "resident hdblcmツールを使用する",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「DBの機能無効だからDB Configとhdbcl (control)」\nManage Restricted Features app：特定の機能を制限するためのアプリ。\nHdbuserstore：ユーザー情報の管理ツールであり、機能を無効にするためのものではない。\nManage Database Configuration：データベースの設定を管理するアプリケーション。\nresident hdblcm：SAP HANAのライフサイクル管理ツール。\nResident=常駐"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP S/4HANA システムでは、ソースシステムのエイリアス S4FIN に対してターゲットシステムのエイリアス FIORI が保持されています。 どの接続がエイリアスS4FINを持つバックエンドカタログの抽出に関連しますか？",
+    "options": [
+      {
+        "text": "FIORI_HTTPS",
+        "status": "incorrect"
+      },
+      {
+        "text": "FIORI_RFC",
+        "status": "incorrect"
+      },
+      {
+        "text": "S4FIN_HTTPS",
+        "status": "correct"
+      },
+      {
+        "text": "S4FIN_RFC",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "※そういうもんだと覚えましょう。\nターゲットシステムエイリアス：外部システムや別のSAPシステムへの接続設定を簡略化するためのエイリアス（名前のこと）\nソースシステムエイリアス：データが抽出される元のシステムに対するエイリアス\nバックエンドカタログ：システム内のアプリケーションやサービスのリスト。バックエンドカタログはHTTPS接続を使う。\n\nFIORI_HTTPS：FIORIというエイリアスを使ったHTTPS接続\nFIORI_RFC：FIORIというエイリアスを使ったRFC接続\nTADM10_2 p.600"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP HANAマルチテナント・データベース・コンテナ（MDC）システムを説明する特徴はどれですか。 注: この質問には ３つの正解があります。",
+    "options": [
+      {
+        "text": "データベースの分離は、オペレーティング・システム・レベルでテナント・データベース間の分離を高める。",
+        "status": "correct"
+      },
+      {
+        "text": "ネームサーバーは、システムデータベースのインデックスサーバー機能を提供する。",
+        "status": "correct"
+      },
+      {
+        "text": "ネームサーバーは、データベース内のテーブルとテーブル・パーティションの位置に関する情報を所有している。",
+        "status": "incorrect"
+      },
+      {
+        "text": "マルチテナント・データベース・コンテナ・システムは、単一のシステムID（SID）によって識別される。",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「マルチだから分離するけど１つだよ + ネームとインデックス」\nMultitenant Database Container (MDC)：複数のテナントデータベースを1つのSAP HANAシステム内で管理するアーキテクチャ。\nネームサーバ：システム全体のランドスケープ情報を保持する役割を担う。\nインデックスサーバ：データベースのインデックスとデータの処理を行うサーバー。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP S/4HANA Server 2021 システムをインストールする際、SAPINST STACK XML オプションを使用してインストールを開始した場合にのみ、Software Provisioning Manager (SWPM) が実行できるアクションはどれですか? 注: この質問には ３つの正解があります。",
+    "options": [
+      {
+        "text": "移送管理システム（TMS）の構築",
+        "status": "correct"
+      },
+      {
+        "text": "追加言語をインストールする",
+        "status": "correct"
+      },
+      {
+        "text": "SPAM/SAINTアップデートを適用する。",
+        "status": "correct"
+      },
+      {
+        "text": "クライアント000にユーザーDDICのパスワードを設定する。",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「トムさん(TMS)アリ(Additional Language)をスパム(SPAM/SAINT)する」\n\nSoftware Provisioning Manager (SWPM)：SAPシステムのインストール、アップグレード、および移行を支援するためのツール。\nSAPINST STACK XML：Maintenance Plannerで生成されたXMLファイルで、インストール手順や設定を自動化するために使用される。\nSAPINST STACK XMLオプションを使用すると、TMS(移送管理システム)の基本的なセットアップが自動的に行われる。\nTADM12_2:p.269"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "複数のSAP Gatewayサービスを同時に登録する方法は？ 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "トランザクション /IWFND/GW_CLIENT を使用する。",
+        "status": "incorrect"
+      },
+      {
+        "text": "トランザクション /IWFND/MAINT_SERVICE を使用する。",
+        "status": "correct"
+      },
+      {
+        "text": "タスクリスト SAP_GATEWAY_ACTIVATE_ODATA_SERVを使用する。",
+        "status": "correct"
+      },
+      {
+        "text": "タスクリストSAP_GATEWAY_BASIC_CONFIGを使用する。",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「SERV」がついているやつが答えです。\n\n/IWFND/GW_CLIENT：Gatewayクライアント。主にODataサービスのテストに使用される。tadm10_2 p.318\n/IWFND/MAINT_SERVICE：Gatewayサービスのアクティベーションとメンテナンスに使用される。\nSAP_GATEWAY_ACTIVATE_ODATA_SERV：SAP GatewayのODataサービスを有効化するために使用される。 TADM10_2 p.489\nSAP_GATEWAY_BASIC_CONFIG：SAP Gatewayの基本設定を行うためのタスクリスト。基本的な設定に使用される。Gateway自体の有効化とか、TADM10_2:p.316"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "標準的なtp設定において、輸送戦略「キュー駆動型移送、大量移送」の特徴であり、輸送戦略「キュー駆動型移送、単一移送」の特徴ではないものは何か？ 注：この問題には3つの正解があります。",
+    "options": [
+      {
+        "text": "「全リクエストのインポート」機能が利用できる。",
+        "status": "correct"
+      },
+      {
+        "text": "インポート処理はバックグラウンドでスケジュールできる。",
+        "status": "correct"
+      },
+      {
+        "text": "「インポートリクエスト」機能を使用すると、インポートされた移送依頼はインポートキューに残る。",
+        "status": "correct"
+      },
+      {
+        "text": "リターンコード16は、トランスポートリクエスト内の誤ったオブジェクトが原因である。",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「問題が変わらなければ数字が載ってない選択肢が正解です」\nQueue-Driven Transports (キュー駆動型移送)：SAPシステム間で変更を移送するための戦略で、キューを使用してリクエストを管理する。\n※ この問題ではQueue-Drivenはどちらにもあるので「大量移送」と「単一移送」の違いにのみ着目すればよい。\n\n大量移送：多数の移送依頼を一括してインポートする戦略。自動化と一貫性を重視。\n単一移送：特定の移送依頼を個別にインポートする戦略。少数の変更に適している。\nReturn Code：インポートプロセスの結果を示すコード。8は単一の場合「失敗」、大量の場合「成功」、16はどちらもエラーを示す。\n12以上はクリティカルエラー。移送依頼内のオブジェクトではなく、移送ツール自体に原因がある。TADM12_1 p.146"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "トランザクション「プロファイル・パラメータの編集」（RZ11）で実行できるアクションは次のうちどれですか？ 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "個々のプロファイル・パラメーターの値を表示する",
+        "status": "correct"
+      },
+      {
+        "text": "ダイナミック・プロファイル・パラメータの値を変更する",
+        "status": "correct"
+      },
+      {
+        "text": "プロファイルファイルのプロファイルパラメータに新しい値を設定する",
+        "status": "incorrect"
+      },
+      {
+        "text": "すべてのプロファイルパラメータの値をワンステップでダウンロード",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "プロファイルパラメータ：SAPシステムの動作を制御するための設定項目\n「RZ11で表示と動的変更」( RZ10で全体直接変更 )"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP Fiori の迅速なアクティベーションを行いたい。 タスクリストはどのような順序で実行すべきでしょうか。",
+    "options": [
+      {
+        "text": "1. SAP_FIORI_FOUNDATION_S4\n2. SAP_GW_FIORI_ERP_ONE CLNT_SETUP\n3. SAP_FIORI_CONTENT_ACTIVATION",
+        "status": "incorrect"
+      },
+      {
+        "text": "1. SAP_GW_FIORI_ERP_ONE_CLNT_SETUP\n2. SAP_FIORI_FOUNDATION_S4\n3. SAP_FIORI_CONTENT_ACTIVATION",
+        "status": "correct"
+      },
+      {
+        "text": "1. SAP_GW_FIORI_ERP_ONE_CLNT_SETUP\n2. SAP_FIORI_CONTENT_ACTIVATION\n3. SAP_FIORI_FOUNDATION_S4",
+        "status": "incorrect"
+      },
+      {
+        "text": "1. SAP_FIORI_FOUNDATION_S4\n2. SAP_FIORI_CONTENT_ACTIVATION\n3. SAP_GW_FIORI_ERP_ONE_CLNT_SETUP",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「エリートのGW、基礎固め、コンテンツ活かす」TADM10_2: p.480"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "ABAPプログラムにおいて、ネイティブSQLでは利用できないABAP SQLの機能にはどのようなものがありますか？ 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "データベースの独立性",
+        "status": "correct"
+      },
+      {
+        "text": "作業工程を伴わない実行",
+        "status": "incorrect"
+      },
+      {
+        "text": "AS ABAPデータバッファの使用",
+        "status": "correct"
+      },
+      {
+        "text": "データベースプロシージャとしてのABAPプログラムの実行",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「独立なバッファ」\n※ABAP SQLは異なるデータベースでも同じコードが動作するように設計されている。\n※SQLの実行にはいずれもワークプロセスが必要\nAS ABAPデータバッファ：頻繁にアクセスされるデータをキャッシュするためのバッファ。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP HANAのインストールメディアからSAP HANAデータベースライフサイクルマネージャー（HDBLCM）を使用する場合、どのタスクを実行できますか。 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "SAP HANAデータベースシステムとそのコンポーネントをアンインストールする",
+        "status": "incorrect"
+      },
+      {
+        "text": "SAP HANAデータベースシステムのコンポーネントを抽出する",
+        "status": "correct"
+      },
+      {
+        "text": "SAP HANAデータベースシステムの名前を変更する",
+        "status": "incorrect"
+      },
+      {
+        "text": "SAP HANAデータベースシステムとそのコンポーネントをアップデートする",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「ライフサイクルには引き出し(抽出)更新」\nHDBLCM (SAP HANA Database Lifecycle Manager)：SAP HANAデータベースのライフサイクル管理ツール。\nインストールメディア：SAP HANAのインストールファイルが含まれているメディア。\nレジデントHDBLCM：インストール後にシステム内に存在するHDBLCMツール。\n※ 名称変更とアンインストールは「レジデントHDBLM」が行う。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "AS ABAP ベースの SAP システムで、Software Update Manager (SUM) を使用して実行できるアクションはどれですか? 注: この質問には ３つの正解があります。",
+    "options": [
+      {
+        "text": "SAPカーネルパッチの適用",
+        "status": "correct"
+      },
+      {
+        "text": "CISIの実行によるソフトウェア情報の修正",
+        "status": "correct"
+      },
+      {
+        "text": "SPAM/SAINTアップデートの適用",
+        "status": "correct"
+      },
+      {
+        "text": "輸送管理システム（TMS）の設定",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「アクションどうする？ トムさん(TMS)、スパム(SPAM/SAINT)で、『懐寒か~寝る(カーネル)』」\n\nSUM (Software Update Manager)：SAPシステムの更新、アップグレード、移行、変換を行うためのツール。\nSAPカーネルパッチ：システムの基盤となるソフトウェア層の更新。\nCISI：ソフトウェア情報を修正するためのプロセス。\n※CISI (Customer Information System Interface) はSUMの機能には含まれていない。\nCISIはSUMでできる。TADM12_2 p.170\nSPAM/SAINT更新はSUMを実行するための前提条件 ページ：同上\nSPAM/SAINT更新はSPAMでやる TADM12_1 p,265\nTMSの設定についても言及を見つけられない。。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "AS ABAP ベースの SAP システムに SAP Support Packages を適用するために Software Update Manager (SUM) を使用する前提条件は何ですか? 注: この質問には ３つの正解があります。",
+    "options": [
+      {
+        "text": "最新のSAPカーネルパッチがSAPシステムに適用されていること。",
+        "status": "incorrect"
+      },
+      {
+        "text": "SAP Host Agent が SUM によって設定されていること。",
+        "status": "correct"
+      },
+      {
+        "text": "SUMアーカイブが展開されていること。",
+        "status": "correct"
+      },
+      {
+        "text": "適切なスタックXMLファイルが存在していること。",
+        "status": "correct"
+      }
+    ],
+    "explanation": "SUM実行の条件は「ホ(ホストエージェント)テン(展開)スタック(XML)」\n\nSUM (Software Update Manager)：SAPシステムのアップデート、アップグレード、移行、変換を行うためのツール。\nSAP Host Agent：SAPシステムの管理を支援するためのエージェント。\nStack XML file：アップデートやアップグレードの際に必要な情報を含むXMLファイル。\nSAP Kernel：SAPシステムの中心となるソフトウェアコンポーネント。\nTADM12_1 p.284\nStack XMLについて：TADM12_2: p.169"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "AS ABAPベースのSAPシステムにおいて、ユーザがダイアログトランザクションの2番目のダイアログステップを実行する。 最初のダイアログ・ステップで使用されたダイアログ・ワーク・プロセスは、別のユーザによって占有されています。 この2番目のユーザーのリクエストはどうなるのでしょうか？",
+    "options": [
+      {
+        "text": "リクエストは、最初のダイアログステップを処理したダイアログ作業プロセスが再び 空くまで、リクエストキューに留まる。",
+        "status": "incorrect"
+      },
+      {
+        "text": "リクエストは更新作業プロセスによって非同期に処理される。",
+        "status": "incorrect"
+      },
+      {
+        "text": "最初のダイアログステップを処理したダイアログ作業プロセスは、リクエストを処理するためにロールアウトを実行する。",
+        "status": "incorrect"
+      },
+      {
+        "text": "このリクエストは、別のフリーダイアログ作業プロセスによって処理される。",
+        "status": "correct"
+      }
+    ],
+    "explanation": "※そういうもんです\nマルチプレクシング：複数のダイアログステップが異なるダイアログワークプロセスによって処理される仕組み\n※SAPシステムは特定のワークプロセスが空くまで待つことはしない。\nロールイン/ロールアウト：(ダイアログでなく)ユーザーコンテキストの管理。ロールインはワークプロセスにユーザーコンテキストを読み込む操作、ロールアウトはそれを解放する操作。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP HANAはデータ永続層をどのように暗号化するのですか？",
+    "options": [
+      {
+        "text": "ページレベル別",
+        "status": "correct"
+      },
+      {
+        "text": "テーブルレベル別",
+        "status": "incorrect"
+      },
+      {
+        "text": "カラムレベル別",
+        "status": "incorrect"
+      },
+      {
+        "text": "nowレベル別",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "HANA DBの「永続層（Persistence Layer）」は、インメモリで処理されるデータを電源断やクラッシュ後も失わないよう、ディスク（ストレージ）に永続化する仕組みとその領域の総称です。そういうもんです。\nHA200 p.430"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "オペレーション・モードを使用して、どの作業工程の数量を変更できますか？ 注: この質問には ３つの正解があります。",
+    "options": [
+      {
+        "text": "スプールワークプロセス",
+        "status": "incorrect"
+      },
+      {
+        "text": "更新ワークプロセス",
+        "status": "correct"
+      },
+      {
+        "text": "ダイアログワークプロセス",
+        "status": "correct"
+      },
+      {
+        "text": "バックグラウンドワークプロセス",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「普通のWPが正解です」\nオペレーションモード（Operation Mode）：異なる時間帯や業務状況に応じてワークプロセスの数や種類を動的に変更するための設定。\nTADM10_2 p.135"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "移送依頼をインポートするとき、バッチジョブはどのステップを実行しますか？ 注: この質問には ３つの正解があります。",
+    "options": [
+      {
+        "text": "辞書オブジェクトのアクティブ化",
+        "status": "correct"
+      },
+      {
+        "text": "ネームタブの移動",
+        "status": "correct"
+      },
+      {
+        "text": "ABAPプログラムの有効化",
+        "status": "incorrect"
+      },
+      {
+        "text": "辞書オブジェクトのインポート",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「バッチジョブで配らずに(Distributionせずに)辞書移動」\nバッチジョブ：一連のタスクを自動で実行するジョブ。ユーザーの介入なしで実行される。\nネームタブ：辞書オブジェクトの名前情報を含むテーブル。\nTADM12_1 p.202"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP HANAのテーラード・データセンター統合（TDI）アプローチでは、デルタマージ処理時に必要な追加ディスク容量係数はどのくらいですか。",
+    "options": [
+      {
+        "text": "16",
+        "status": "incorrect"
+      },
+      {
+        "text": "2",
+        "status": "incorrect"
+      },
+      {
+        "text": "1.2",
+        "status": "correct"
+      },
+      {
+        "text": "30",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「TDlは値段が20%アップ」\nTDI（Tailored Data Center Integration）：企業が自分のハードウェア環境でSAP HANAを実行するためのアプローチ。\nデルタマージ：書き込み専用のデルタストレージから読み取り専用のメインストレージにデータを移動する操作。\n追加ディスクスペース：一時的にテーブルをディスク上で複製するために必要なディスクスペース。\nHA200 p.34"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "Additional Application Serverインスタンスを再起動するとき、どのプロファイルが評価されますか? 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "デフォルトプロファイル",
+        "status": "correct"
+      },
+      {
+        "text": "セントラルサービスインスタンスのインスタンスプロファイル",
+        "status": "incorrect"
+      },
+      {
+        "text": "追加アプリケーションサーバーのインスタンスプロファイル",
+        "status": "correct"
+      },
+      {
+        "text": "プライマリアプリケーションサーバのインスタンスプロファイル",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「デフォルト(全体)と再起動する奴自身を見る」\nDefault Profile（デフォルトプロファイル）：システム全体に適用される基本設定が含まれるプロファイル。\nInstance Profile（インスタンスプロファイル）：特定のインスタンスに適用される設定が含まれるプロファイル。各インスタンスには専用のインスタンスプロファイルがある。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "デフォルト設定を使用してSAP HANAマルチホストデータベースシステムをインストールする場合、どのファイルシステムの場所を指定する必要がありますか。 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "/hana/shared",
+        "status": "correct"
+      },
+      {
+        "text": "/hana/log/<SID>",
+        "status": "correct"
+      },
+      {
+        "text": "/usr/sap/<SID>",
+        "status": "incorrect"
+      },
+      {
+        "text": "/usr/sap/hostetri",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「マルチのホストは、ハナ、シェアしろ (shared log)」\n\n/hana/shared：SAP HANAシステムのバイナリ、トレース、および設定ファイルが保存される共有ファイルシステムのパス\n/hana/log/<SID>：AP HANAシステムのログファイルが保存されるパス\n/usr/sap/<SID>：SAPのインスタンスディレクトリ\n/usr/sap/hostetri：SAPのホストエントリファイルが保存される場所\nHA200 p.80"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "DEV、QAS、PRDの標準的な3つのシステムランドスケープを使用しています。 QASシステムのリポジトリオブジェクトの変更は、どのような場合に修正として扱われますか？",
+    "options": [
+      {
+        "text": "オブジェクトがDEVで作成され、コピーのトランスポートを経由してQASに移送された場合",
+        "status": "incorrect"
+      },
+      {
+        "text": "オブジェクトの名前がSAPの名前範囲内にある場合",
+        "status": "incorrect"
+      },
+      {
+        "text": "オブジェクトがDEVで作成され、ワークベンチリクエストを通じてQASに移送された場合",
+        "status": "incorrect"
+      },
+      {
+        "text": "オブジェクトのオリジナルシステムがQASである場合",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「QASで作ったオブジェクトはQASだけで修正できる」\n\n３層ランドスケープ(DEV, QAS, PRD)：開発（DEV）、品質保証（QAS）、本番（PRD）の3つのシステム環境のこと。\nリポジトリオブジェクト：ABAPプログラム、テーブル、トランザクションなど、SAPシステム内の保存されるオブジェクトのこと。\nTADM12_1 p.149"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "スタンドアロンのSAP Web ディスパッチャがAS ABAPベースのSAPシステム間の通信を可能にするための前提条件は何ですか？ 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "ICF サービス /sap/public/icf_info/icr_groups の有効化",
+        "status": "correct"
+      },
+      {
+        "text": "ICF サービス /sap/public/ping の有効化",
+        "status": "incorrect"
+      },
+      {
+        "text": "PASインスタンスのICMプロセスのHTTP(S)ポートの特定",
+        "status": "incorrect"
+      },
+      {
+        "text": "ABAPメッセージサーバーのHTTP(S)ポートの特定",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「スタンドアロンなグル(groups)メ(メッセージ)」\n※ Web ディスパッチャが正しく動作するためには、メッセージサーバのポート情報が必要\n/sap/public/icf_info/icr_groups：SAPシステムの情報を取得するサービスのICFサービス。このサービスによって Web ディスパッチャがシステム情報を取得できるようになる。\n/sap/public/ping：システムの状態を確認するためのICFサービス。Web ディスパッチャの設定には直接関係がない。\nTADM10_2 p.344"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "AS JavaベースのSAPシステム用に、プライマリ・アプリケーション・サーバとセントラル・サービス・インスタンスをインストールしています。 構成しなければならないJavaサーバーノードの最小数はいくつですか。",
+    "options": [
+      {
+        "text": "2",
+        "status": "incorrect"
+      },
+      {
+        "text": "4",
+        "status": "incorrect"
+      },
+      {
+        "text": "1",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「最小のJavaサーバノードは１つ」\nJavaサーバーノード：Javaアプリケーションを実行するための単位。\nTADM12_1 p.114"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "どのワークプロセスタイプがスプール要求を作成できますか？ 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "Update",
+        "status": "incorrect"
+      },
+      {
+        "text": "Spool",
+        "status": "incorrect"
+      },
+      {
+        "text": "Background",
+        "status": "correct"
+      },
+      {
+        "text": "Dialog",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「対話（Dialog）と背景（Background）でスプール作成」\nTADM10_1 p.145"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "システム・データベースとしてSAP HANAを必要とするアプリケーション・タイプは？ 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "Analytical apps",
+        "status": "correct"
+      },
+      {
+        "text": "Classic applications",
+        "status": "incorrect"
+      },
+      {
+        "text": "Fact sheet apps",
+        "status": "correct"
+      },
+      {
+        "text": "Transactional apps",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「ファクトとアナリはハナ（HANA）要る」\nFact sheet apps：データの概要や詳細情報を提供するアプリケーション。SAP HANAの検索機能を利用。\nTransactional apps：トランザクション処理を行うアプリケーション。必ずしもSAP HANAを必要としない。\nTADM10_1 p.421"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "AS ABAPベースのSAPシステムでは、Software Update Managerを使用して次のうちどれを更新できますか？ 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "SAP ホストエージェント",
+        "status": "incorrect"
+      },
+      {
+        "text": "ソフトウェア・コンポーネント SAP BASIS",
+        "status": "correct"
+      },
+      {
+        "text": "SAPカーネル",
+        "status": "correct"
+      },
+      {
+        "text": "データベースシステム",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "Software Update Manager (SUM)：SAPシステムの更新、アップグレード、移行などを行うためのツール。\n\n「基盤(BASIS)カーネル」が更新可能\nSAP Host Agent：SAPシステムの監視や管理のためのエージェント。SUMを使用して直接更新することは一般的でない。なんならSUMの開始の前提条件がSAPホストエージェントのバージョンが最新であること。(TADM12_1 p.284)\nSAP BASIS：SAPシステムの技術的な基盤を提供するコンポーネントであり、SUMを使用して更新することができる。\nSAP kernel：SAPシステムの実行環境を提供するソフトウェア層。SUMを使用して更新が可能。\nTADM12_2 p.190"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "AS ABAP ベースの SAP システムのインストールを準備しています。 Maintenance Planner が計算できるソフトウェアはすべてダウンロード済みです。 他に何をダウンロードする必要がありますか？",
+    "options": [
+      {
+        "text": "SAPCAR",
+        "status": "correct"
+      },
+      {
+        "text": "SPAM/SAINTアップデート",
+        "status": "incorrect"
+      },
+      {
+        "text": "SAPホストエージェント",
+        "status": "incorrect"
+      },
+      {
+        "text": "SAPカーネル",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「Maintenance PlannerもSAPｶｰ(SAPCAR)」\nMaintenance Planner：SAPシステムのメンテナンスを計画し、必要なソフトウェアを計算・ダウンロードするためのツール。\nSAPCAR：SAPのアーカイブツール。SARファイルを解凍するために使用される。\n\nSPAM/SAINT：SAPシステムのパッチやアドオンのインストールを管理するツール。Maintenance Plannerでダウンロードされる。\nSAP Host Agent：SAPシステムのホストの監視と管理を行うソフトウェア。Maintenance Plannerでダウンロードされる。\nSAP kernel：SAPシステムの基本的な実行コンポーネント。Maintenance Plannerでダウンロードされる。\nTADM12_2 p.278"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "AS ABAP ベースの SAP システムを「品質保証システム」の役割で更新する予定です。 このシステムの Software Update Manager (SUM) を開始する前に、SAP は何を行うことを推奨していますか? 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "使用しているSUMのバージョンに関するSAPノートの指示に従うこと。",
+        "status": "correct"
+      },
+      {
+        "text": "無効なロードに対してSAP Load Generator（SGEN）トランザクションを実行すること。",
+        "status": "incorrect"
+      },
+      {
+        "text": "「開発システム」の更新から変更調整移送をインポートすること。",
+        "status": "correct"
+      },
+      {
+        "text": "最新のSAPホストエージェントパッチを適用すること。",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「更新には変更とSAPノート」\nSAPノート：SAPが提供する技術的なガイドラインや修正情報を含む文書。\nトランザクションSGEN：ABAPプログラムのロードを事前に生成するためのトランザクション。システムのパフォーマンス向上のために使用する。更新前に必須ではない。\nTADM12_2 p.170"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "AS ABAPベースのSAPシステムのインストールの一環として、移送管理システム（TMS）を構成します。 特定の移送ディレクトリを使用する最初のSAPシステムに対して、どのような情報を提供できますか? 注: この質問には ３つの正解があります。",
+    "options": [
+      {
+        "text": "移送ドメインの名前",
+        "status": "correct"
+      },
+      {
+        "text": "新しく作成されるユーザーのパスワード",
+        "status": "correct"
+      },
+      {
+        "text": "新しく作成されるユーザーのユーザーID",
+        "status": "incorrect"
+      },
+      {
+        "text": "AS ABAPベースのSAPシステムの説明",
+        "status": "correct"
+      }
+    ],
+    "explanation": "Transport Management System (TMS)：SAPシステム間の変更やカスタマイズの管理を行うシステム。\n移送ドメイン：TMSで管理される全てのSAPシステムの集まり。\n移送ディレクトリ：移送依頼を保存するディレクトリ。\n移送グループ：同じ移送ディレクトリを共有するSAPシステムのグループ。設定時は必須ではない。\n※ ユーザIDは自動で生成されるため、手動で入力する必要はない。\nTADM12_1 p.74-75"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "開発システムからワークベンチのリクエストをリリースする際、エクスポートを行うための前提条件は何ですか？ 注: この質問には ３つの正解があります。",
+    "options": [
+      {
+        "text": "ワークベンチリクエスト内のすべてのリポジトリオブジェクトは、同じ移送レイヤーに割り当てられなければならない。",
+        "status": "correct"
+      },
+      {
+        "text": "ワークベンチ要求内のすべてのリポジトリオブジェクトはパッケージに割り当てられなければならない。",
+        "status": "correct"
+      },
+      {
+        "text": "ワークベンチのリクエストでオブジェクトが使用するすべてのパッケージは、有効な移送レイヤーに割り当てられていなければならない。",
+        "status": "incorrect"
+      },
+      {
+        "text": "開発システムから後続システムへの統合ルートが存在しなくてはならない。",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「同じ層に、全部まとめて、パッケージで」\n\nワークベンチリクエスト：開発システムでの変更を記録し、他のシステムに移送するためのリクエスト。\n移送レイヤー：開発オブジェクトを移動するためのルートやレベルのこと。\nデリバリルート：オブジェクトを開発システムから他のシステムに移動するための物理的なルート。\n統合ルート：開発システムから本番システムへのオブジェクトの移動を管理するためのルート。\nコンソリデーションルート：開発システムからテストシステムや本番システムへのデータ移行ルート。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "AS ABAP ベースの SAP システムで、テスト印刷をトリガーしましたが、スプール要求が生成されていないことに気づきました。 この問題を分析するために、SAPは何をチェックすることを推奨していますか?",
+    "options": [
+      {
+        "text": "対応するホスト上のホストスプーラのログ",
+        "status": "incorrect"
+      },
+      {
+        "text": "出力デバイスへのデバイスタイプの割り当て",
+        "status": "incorrect"
+      },
+      {
+        "text": "トランザクション・ダンプ（ST22）とアプリケーション・ログ（SLG1）",
+        "status": "correct"
+      },
+      {
+        "text": "スプール作業プロセスの開発者トレース",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「移送失敗、ダンプカーで。」\nトランザクションダンプ（ST22）：ABAPプログラムの実行中に発生したランタイムエラー（例外）を記録したもの\nアプリケーションログ（SLG1）：アプリケーションレベルでのイベントやエラーを記録するログ。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP S/4HANAサーバーシステムで、技術ユーザーのために保持できないデータはどれですか？",
+    "options": [
+      {
+        "text": "Address",
+        "status": "correct"
+      },
+      {
+        "text": "Parameters",
+        "status": "incorrect"
+      },
+      {
+        "text": "Roles",
+        "status": "incorrect"
+      },
+      {
+        "text": "Groups",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「技術ユーザーには住所は無用」\n※技術ユーザーは人間ではなくシステムやアプリケーションに関連するユーザーなので、住所情報を持たない。したがって、技術ユーザーの住所を管理することはできない。\nTADM10_1 p.225"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "あなたはAS JavaベースのSAPシステムを更新しています。 Software Update Managerはどのアクションを実行できますか？ 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "アーカイブの信頼性をチェック",
+        "status": "correct"
+      },
+      {
+        "text": "スタック構成ファイル（スタックxmlファイル）を使用せず更新する",
+        "status": "correct"
+      },
+      {
+        "text": "開発環境をロックする",
+        "status": "incorrect"
+      },
+      {
+        "text": "変更調整を要求する",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「アクションはチェック・スタック」※ 「ロック・スタック」が正解との声もある。\nSoftware Update Manager (SUM) ：SAPシステムの更新やパッチ適用を行うためのツール\nスタックXMLファイル：SAPシステムの更新やパッチ適用に必要な情報を含む設定ファイル。カスタムシナリオやテスト環境でいちいちXMLファイルを作らずにできる。\nアーカイブファイルの真正性：アーカイブファイルが改ざんされていないことを確認するプロセス\nTADM12_2 p.217"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "コピー移送とワークベンチ・リクエストの違いは何ですか？ 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "インポート後、ターゲットシステムのリポジトリオブジェクトはコピーとして分類されること",
+        "status": "incorrect"
+      },
+      {
+        "text": "インポートする際、移送依頼は後続のデリバリー・システムには転送されないこと",
+        "status": "correct"
+      },
+      {
+        "text": "移送オーガナイザー(SE09)で移送依頼をリリースする際、制御ファイルが作成されないこと",
+        "status": "incorrect"
+      },
+      {
+        "text": "移送依頼を作成する際、統合ルートのないターゲットシステムを選択することができること",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「他のシステムには移送されず、制御ファイルも作成しない。」\n\n制御ファイル：移送依頼の制御情報を含むファイル\n※「コピーの移送」は統合ルートがないシステムにも移送を可能にするらしい。\nTADM12_1 p.189, TADM12_1 p.239"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "AS ABAPベースのSAPシステムにおけるセキュリティポリシーの目的は何ですか？ 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "システムログオン時のユーザー認証をなくすこと",
+        "status": "incorrect"
+      },
+      {
+        "text": "セキュリティに関連するシステムプロファイルパラメータを作成すること",
+        "status": "incorrect"
+      },
+      {
+        "text": "特定のユーザーのログオンを制限すること",
+        "status": "correct"
+      },
+      {
+        "text": "ユーザー固有のシステムログオンの動作やパスワードルールを指定すること",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「セキュリティのプロ（プロファイルパラメータ）がパス（パスワードルール）する」\n\n※セキュリティポリシーの目的はシステムのセキュリティを強化することであり、ユーザー認証を排除することはセキュリティの強化にはならない。\n※特定のユーザーのログオン制限は他の手段（例：ユーザー権限管理）で行われる。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "AS ABAPベースの4システムランドスケープにおけるプリプロダクションシステムの目的は何ですか？ 注: この質問には ２つの正解があります。",
+    "options": [
+      {
+        "text": "本番システムのフェイルオーバーシステムとして機能する",
+        "status": "incorrect"
+      },
+      {
+        "text": "クロスリファレンスエラーの検出",
+        "status": "correct"
+      },
+      {
+        "text": "次の緊急修正やプロジェクトサイクルを隔離する",
+        "status": "correct"
+      },
+      {
+        "text": "緊急修正を実施する",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "4システムランドスケープは、通常、以下のシステムで構成される。\n1. 開発システム（Development, DEV）\n2. 品質保証システム（Quality Assurance, QAS）\n3. プレプロダクションシステム（Pre-production, PREPROD）実運用環境と同じ条件で最終テストを行うための環境。\n4. 本番システム（Production, PRD）\n\nクロスリファレンスエラー（Cross Reference Error）：システム内の相互参照が正しく設定されていないエラー。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "AS ABAP ベースのシステム・ランドスケープの TMS QA 承認手順を構成したいとします。 次のうち、選択できる事前定義された承認手順はどれですか？ 注: この質問には ３つの正解があります。",
+    "options": [
+      {
+        "text": "部門によって承認される",
+        "status": "correct"
+      },
+      {
+        "text": "依頼主によって承認される",
+        "status": "correct"
+      },
+      {
+        "text": "プロジェクトマネージャーによって承認される",
+        "status": "incorrect"
+      },
+      {
+        "text": "システム管理者によって承認される",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「QA（品質保証）承認手続きは部(部署)・所(所有者)・管(管理者) で承認」\nQA承認手続き：変更が本番システムに導入される前に品質保証(Quality Assurance)システムで承認されることを確保するプロセス\n\n※開発者は変更を行う本人であり、承認する責任は他の役割が行う。\n※プロジェクトマネージャーはプロジェクトの進行管理を担当するが、技術的な変更の承認は他の役割にある。\nTADM12_1 p.240"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "あなたはAS ABAPベースのSAPシステムにログインしています。 プログラムへの変更を含む移送依頼のタスクをリリースすると、何が起こりますか?",
+    "options": [
+      {
+        "text": "タスクのオブジェクトリストは、移送依頼に引き渡される。",
+        "status": "correct"
+      },
+      {
+        "text": "データファイルと制御ファイルが作成される",
+        "status": "incorrect"
+      },
+      {
+        "text": "レポジトリのロックが解除される。",
+        "status": "incorrect"
+      },
+      {
+        "text": "バージョン管理に一時的なバージョンが作成される。",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「変更を含む移送にはタスクのリストが絡む」\n1. 開発者がタスクを完了：各開発者が担当するタスクを完了。\n2. タスクのリリース：各開発者が自分のタスクをリリース。この時点で、タスクのオブジェクトリストが移送依頼に移される。\n3. 移送依頼のリリース：全てのタスクがリリースされた後、移送依頼をリリース。この際にデータファイルとcofileが作成され、リポジトリロックが解除され、バージョン管理に一時的なバージョンが作成される。\nTADM10_1p.184"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "ローカルクライアントコピーを実行する場合、どのクライアントコピープロファイルが利用できますか？ 注: この質問には ３つの正解があります。",
+    "options": [
+      {
+        "text": "カスタマイズ、ユーザー・マスター・レコード、ユーザー・バリアント",
+        "status": "correct"
+      },
+      {
+        "text": "変更文書なしのすべてのクライアント固有データ",
+        "status": "correct"
+      },
+      {
+        "text": "クロス・クライアント・カスタマイズを含むカスタマイズ",
+        "status": "incorrect"
+      },
+      {
+        "text": "ユーザー・マスター・レコードと権限プロファイル",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「カスタムなしの権限プロファイル」\nクライアントコピー：SAPシステム内で異なるクライアント間でデータをコピーするプロセス"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP Solution Manager システムのインストール中にパラメータ値を変更できるのはどのフェーズですか。",
+    "options": [
+      {
+        "text": "初期フェーズ",
+        "status": "incorrect"
+      },
+      {
+        "text": "パラメータ定義",
+        "status": "incorrect"
+      },
+      {
+        "text": "実行",
+        "status": "incorrect"
+      },
+      {
+        "text": "パラメータの要約",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「インストール中に変更できるのは最後のまとめだけ！」\nSoftware Provisioning Manager (SWPM)：SAPシステムのインストールや設定を行うためのツール\n1. Initial Phase (初期フェーズ)\nインストールの準備を行う。ソフトウェアとハードウェアの要件を確認し、必要なファイルやライセンスを準備する。\n\n2. Define Parameters (パラメータの定義)\nインストールプロセスで使用される様々なパラメータを設定。例として、SAPシステムIDやDNSドメイン名などがある。\n\n3. Execution (実行)\n実際のインストールが行われるフェーズ。ソフトウェアがシステムにインストールされ、必要な設定もこのフェーズで行われる。\n\n4. Parameter Summary (パラメータの要約)\n定義したすべてのパラメータの最終確認が行われる。必要に応じてパラメータの修正が可能。\nTADM12_2 p.82"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "ソフトウェアアップデートマネージャ（SUM）を使用して AS ABAP ベースの SAP システムのアップデートを実行するには、アップデートプロセスの開始時にいわゆるスタック XML ファイルを提供する必要があります。",
+    "options": [
+      {
+        "text": "正しい",
+        "status": "correct"
+      },
+      {
+        "text": "誤り",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "※SUMは Maintenance Planner で計算されたスタック-XMLファイルを使用して、アップデートの詳細情報を取得する。このファイルにはシステムがどのようにアップデートされるべきかの情報が含まれている。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "これらのSAPシステムのうち、AS ABAPベースのSAPシステムではないものはどれか",
+    "options": [
+      {
+        "text": "SAP S/4HANA Server",
+        "status": "incorrect"
+      },
+      {
+        "text": "SAP BW",
+        "status": "incorrect"
+      },
+      {
+        "text": "SAP ECC",
+        "status": "incorrect"
+      },
+      {
+        "text": "SAP EP",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「ポータルはJavaで」\nSAP S/4HANA Server：ABAPベースのアプリケーションサーバーを使用\nSAP BW (Business Warehouse)：データウェアハウスソリューションで、データの収集、保存、管理を行う。ABAPベースのアプリケーションサーバーを使用。\nSAP ECC (Enterprise Core Component)：旧世代のERPシステム。ABAPベースのアプリケーションサーバーを使用。\nSAP EP (Enterprise Portal)：企業のポータルサイトを構築するためのプラットフォーム。主にJavaベースのアプリケーションサーバーを使用。\nTADM10_1 p.179"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "テクニカルコンフィギュレーションのタスクマネージャでタスクリストを定義する場合、数百の事前定義されたステップを自分のタスクリストに含めることができる。",
+    "options": [
+      {
+        "text": "正しい",
+        "status": "correct"
+      },
+      {
+        "text": "誤り",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "テクニカルコンフィギュレーション：システムやソフトウェアの技術的な設定のこと。SAPでは、システムのパフォーマンスや機能を最適化するための設定を指す。\n※もし誤りであれば、すべてのステップを手動でタスクリストに追加する必要がある。しかし、実際には事前定義されたステップを利用できるため手間が省けている。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP では、SAP システム環境全体で一意の SAP システム ID (SID) を使用することを推奨しています。",
+    "options": [
+      {
+        "text": "正しい",
+        "status": "correct"
+      },
+      {
+        "text": "誤り",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "※SIDは「システムの一意の識別子」という意味なので当然「正しい」です。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "追加言語をインストールするために必要な手順は？ 注: この質問には ３つの正解があります。",
+    "options": [
+      {
+        "text": "言語インポートのスケジューリング",
+        "status": "correct"
+      },
+      {
+        "text": "言語の分類",
+        "status": "correct"
+      },
+      {
+        "text": "新たに生成されたテキストのために定期的に言語を補充",
+        "status": "incorrect"
+      },
+      {
+        "text": "語学補習のスケジュール",
+        "status": "correct"
+      }
+    ],
+    "explanation": "『言語をまず「分けて」、次にシステムに「入れて」、最後に不足分を「補う」』\nTADM12_2 p.162"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "TMSの初期設定はどのクライアントで行われますか？",
+    "options": [
+      {
+        "text": "IN ANY CLIENT",
+        "status": "incorrect"
+      },
+      {
+        "text": "IN CLIENT 000",
+        "status": "correct"
+      },
+      {
+        "text": "IN THE PRODUCTIVE CLIENT",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「最初は000」\nIN ANY CLIENT：「どのクライアントでも初期設定を行える」という意味。流石にダメ。\nクライアント000：SAPシステムの初期インストール時にデフォルトで提供される特別なクライアント。システム設定や管理タスクに主に使用される。\nIN THE PRODUCTIVE CLIENT：本番クライアント\n※ TMSADM：TMSの管理ユーザ。クライアント000で作成され、TMSの管理タスクを実行する。\nTADM12_2 p.161"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "パラメータモードTypicalをインストール手順に使用する場合、この設定により、次のインストールプロセスで変更できないパラメータ値がいくつか決定されます。",
+    "options": [
+      {
+        "text": "正しい",
+        "status": "incorrect"
+      },
+      {
+        "text": "誤り",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「Typicalに変更できる」\nParameter Mode（パラメータモード）：インストール時に設定するモード。通常、「Typical」と「Custom」がある。\nTypical Mode（標準モード）： 簡略化された手順でインストールを行うモード。基本的な設定のみを行うが、最終的なパラメータチェックで全ての設定を確認および変更可能。\nCustom Mode（カスタムモード）：すべてのパラメータを個別に設定するモード。詳細な設定が必要な場合に使用。\nTADM12_2 p.60"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAPinst を使用して SAP S/4HANA Server 2021 システムをインストールする際に作成されるデータベーススキーマの名前を特定してください。",
+    "options": [
+      {
+        "text": "SAPS4",
+        "status": "incorrect"
+      },
+      {
+        "text": "SAPHANADB",
+        "status": "correct"
+      },
+      {
+        "text": "SAPSR3",
+        "status": "incorrect"
+      },
+      {
+        "text": "SAPSR3756",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "SAP S/4HANA Server 2021をインストールする際に作成されるデータベーススキーマは SAPHANADB 。\nTADM12_2 p.46"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP システムのいくつかのコンポーネントは、Software Update Manager (SUM) を使用してパッチを適用できます。 SUM を使用して更新できる AS ABAP ベースの SAP システムのコンポーネントはどれですか? 注: この質問には ３つの正解があります。",
+    "options": [
+      {
+        "text": "SAP Notes",
+        "status": "incorrect"
+      },
+      {
+        "text": "カーネル",
+        "status": "correct"
+      },
+      {
+        "text": "SPAM/SAINT",
+        "status": "correct"
+      },
+      {
+        "text": "SAP_BASIS",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「パッチ適用、カ(ーネル), BA(SIS), SPAM」\nSAP Notes：SAPシステムの特定の問題を解決するための修正プログラムや情報を提供するドキュメント\nカーネル：オペレーティングシステムレベルでSAPシステムを実行するための環境\nSPAM/SAINT：SAPのサポートパッケージやアドオンを管理するためのツール\nSAP_BASIS：SAPシステムの基本的な機能を提供するソフトウェアコンポーネント\n\nSAP NotesはSUMを使用してアップデートできない。以下の手順で適用する。\n1. SAP Note Assistantを使用して適用する。\n2. SAP Service Marketplaceからノートをダウンロードする。\n3. トランザクションコード（例：SNOTE）を使用してシステムに適用する。\nTADM12_2 p.190"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP S/4HANA Serverシステムをインストールする際、SAP HANA DBはどのようにインストールしますか？",
+    "options": [
+      {
+        "text": "Software Provisioning Managerを使用して、他のSAPシステムインスタンスよりも先にSAP HANA DBをインストールする。",
+        "status": "incorrect"
+      },
+      {
+        "text": "SAPinst を使用して、他の SAP システムインスタンスよりも前に SAP HANA DB をインストールする。",
+        "status": "incorrect"
+      },
+      {
+        "text": "SAPinstを使用して、SAP HANA DBと他のSAPシステムインスタンスを同じ実行環境にインストールする。",
+        "status": "incorrect"
+      },
+      {
+        "text": "SAPinst を起動する前に、データベースツールを使用して SAP HANA DB をインストールする。",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「データベースのインストールが先」\nSoftware Provisioning Manager（SWPM）：SAPシステムのインストールやアップグレードを管理するツール。SAP HANAデータベース自体のインストールは行わない。\nSAPinst：SAP製品のインストールウィザード\nTADM12_2 p.25"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP NetWeaver Administrator ツールの特徴を特定してください。注: この質問には 2 つの正解があります。",
+    "options": [
+      {
+        "text": "Webブラウザのインターフェースを介してアクセスされている",
+        "status": "correct"
+      },
+      {
+        "text": "ユーザー J2EE_ADMIN でのログオンが必要",
+        "status": "incorrect"
+      },
+      {
+        "text": "設定ウィザードへのアクセスを許可する",
+        "status": "correct"
+      },
+      {
+        "text": "SAPシステム外のスタンドアロンツールとして使用される",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「NetでWizardなAdmin」\nSAP NetWeaver Administrator (NWA)：SAPシステムの管理、設定、監視を行うためのWebベースのツール。Javaベースのシステムに使用。\n設定Wizard：NWAに統合されたツールで、システム設定の初期構成や特定のタスクを簡素化する。\nJ2EE_ADMIN：特定の管理権限を持つユーザーアカウント。NWAへのアクセスには必須ではない。\nTADM12_2 p.163"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SUM を使用して SAP システムを更新する前に何をすべきでしょうか?注: この質問には 2 つの正解があります。",
+    "options": [
+      {
+        "text": "最新バージョンのSWPMをダウンロードすること。",
+        "status": "incorrect"
+      },
+      {
+        "text": "クライアント000のDDICユーザーのパスワードを変更すること。",
+        "status": "incorrect"
+      },
+      {
+        "text": "自分のSUMバージョンに対応するSAPノートを読むこと。",
+        "status": "correct"
+      },
+      {
+        "text": "最新バージョンのSUMをダウンロードすること。",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「SUM更新については\"SUM\"に関する選択肢を当てればよい」\nDDIC (Data Dictionary)：SAPシステム内のメタデータ管理を行うユーザーで、特にクライアント000で管理される。\nTADM12_2 p.191"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "ソフトウェア アップデート マネージャー (SUM) を使用する場合、追加の設定を可能にするエキスパート モードを有効にできます。",
+    "options": [
+      {
+        "text": "正しい",
+        "status": "correct"
+      },
+      {
+        "text": "誤り",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "Expert Mode (エキスパートモード)：SUMで利用できるモードの一つで、追加の設定やオプションを提供する。\nTADM12_2 p.192"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "PAS をインストールした後、永続ライセンスがインストールされるまで、ユーザーは SAP システムにログオンできません。",
+    "options": [
+      {
+        "text": "正しい",
+        "status": "incorrect"
+      },
+      {
+        "text": "誤り",
+        "status": "correct"
+      }
+    ],
+    "explanation": "※一時的なライセンスが4ヶ月間発行されて、その期間内に恒久的なライセンスをインストールする必要がある。\nTADM12_2 p.160"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP Load Generatorを使用して、Linuxと他のUnixオペレーティングシステム上で動作するアプリケーションサーバーを含むSAPシステム内で負荷を生成しています。すべてのアプリケーションサーバーに対して選択されたすべての負荷を生成するには、負荷生成を複数回開始する必要があります。 ",
+    "options": [
+      {
+        "text": "正しい",
+        "status": "correct"
+      },
+      {
+        "text": "誤り",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "SAP Load Generator（SGEN）：SAPシステム内でABAPプログラムやその他のオブジェクトの負荷を生成およびコンパイルするためのツール。\n※ 異なるOSプラットフォームを使用するシステムで負荷生成を行う場合、それぞれのプラットフォームごとに負荷生成を個別に開始する必要がある。そのため複数回開始する必要がある。\nTADM12_2 p.216"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "標準のバックグラウンドジョブを設定する際、SAP S/4HANAシステム上でジョブを設定する場合と、AS ABAPベースの非SAP S/4HANAシステム上でジョブを設定する場合で、同一の機能を使用します。",
+    "options": [
+      {
+        "text": "正しい",
+        "status": "incorrect"
+      },
+      {
+        "text": "誤り",
+        "status": "correct"
+      }
+    ],
+    "explanation": "AS ABAPベースの非SAP S/4HANAシステム：SAP ECC、SAP CRM、SAP SCM、SAP SRMなどの旧バージョンのSAPシステム。\n\n※ SAP S/4HANAでは技術的なジョブリポジトリが自動的にバックグラウンドジョブをスケジュールする機能がある。\n※ 非SAP S/4HANAシステムのSM36トランザクションとは異なる設定が必要である。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP初期整合性チェックを使用するとき、どのチェックが実行されますか?  注: この質問には ３つの正解があります。",
+    "options": [
+      {
+        "text": "トランスポート・ディレクトリに関する書き込みアクセス",
+        "status": "incorrect"
+      },
+      {
+        "text": "エンキューサービスに関する情報",
+        "status": "correct"
+      },
+      {
+        "text": "SAPリリースとオペレーティング システム間のバージョン互換性",
+        "status": "correct"
+      },
+      {
+        "text": "メッセージサーバーのアクセシビリティ",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「初期整合性チェックには、エン(キュー)・バ(－ジョン)・メ(ッセージサーバ)」\nSAP Initial Consistency Check (初期整合性チェック)：SAPシステムの整合性を確認するためのチェックで、システムやアプリケーションサーバーを起動する際に自動的に実行される。\nTADM12_2 p.162"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP システムをインストールするときに、SAPinst を起動して、プライマリ アプリケーション サーバー、ABAP セントラル サービス インスタンス、および 1 つまたは複数の追加アプリケーション サーバーを一度にインストールできます。",
+    "options": [
+      {
+        "text": "正しい",
+        "status": "incorrect"
+      },
+      {
+        "text": "誤り",
+        "status": "correct"
+      }
+    ],
+    "explanation": "※SAPのインストールプロセスでは、PASおよびASCSを最初にインストールし、その後でAASを別途インストールする必要がある。\nPrimary Application Server (PAS)：SAPシステムの主要なアプリケーションサーバ。システムの中核となるコンポーネント。\nABAP Central Services Instance (ASCS)：ABAPベースのSAPシステムにおける中央サービスを提供するコンポーネント。Message ServerやEnqueue Serverが含まれる。\nTADM12_2 p.90"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP Solution Manager ABAP 7.2 はどのリリースの AS ABAP を使用していますか?",
+    "options": [
+      {
+        "text": "7.51",
+        "status": "incorrect"
+      },
+      {
+        "text": "7.4",
+        "status": "correct"
+      },
+      {
+        "text": "7.2",
+        "status": "incorrect"
+      },
+      {
+        "text": "7.5",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「SAP Solution Managerで 何(7.2) しよう(7.4)」\nSAP Solution Manager：企業のIT環境を管理するための統合ツール。システムのモニタリング、アップデート管理、インシデント管理などを行う。\nTADM12_2 p.22"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP S/4HANAサーバーシステムの追加アプリケーションサーバーをインストールする際のインストールダイアログ画面で、SAPシステムのプロファイルディレクトリを提供する必要があります。",
+    "options": [
+      {
+        "text": "正しい",
+        "status": "correct"
+      },
+      {
+        "text": "誤り",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "※AASをインストールする際はSAPシステム全体で使用されるプロファイルディレクトリの場所を指定する必要がある。これにより、インストールプロセスはシステムの必要な情報を取得する。\nTADM12_2 p.238"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "すべての AS ABAP ベースの SAP システムには、どのようなソフトウェア コンポーネント (その他) が含まれていますか?  注: この質問には 2 つの正解があります。",
+    "options": [
+      {
+        "text": "SAP_ABA",
+        "status": "correct"
+      },
+      {
+        "text": "S4CORE",
+        "status": "incorrect"
+      },
+      {
+        "text": "SAP_APPL",
+        "status": "incorrect"
+      },
+      {
+        "text": "SAP_BASIS",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「最低限はABA・BASIS(アバベース)」\nSAP_ABA：ABAPベースのSAPシステムの基本的な機能を提供するソフトウェアコンポーネント。ユーザー管理、パフォーマンステスト、開発ツールなどが含まれる。\nS4CORE：SAP S/4HANAシステムに特有のソフトウェアコンポーネント。全てのシステムでなくS/4HANAに関連している。\nSAP＿APPL：SAP ECCのソフトウェアコンポーネント。全てのシステムでなく、SAP ECCに関連している。 \nTADM12＿２ p.21"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAPシステムをSoftware Update Manager (SUM)を使用して更新する際、ツールの主な構成の選択肢は何ですか？ ",
+    "options": [
+      {
+        "text": "Standard",
+        "status": "correct"
+      },
+      {
+        "text": "Custom",
+        "status": "incorrect"
+      },
+      {
+        "text": "Typical",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「主なものは当然Standard」\nStandard設定：SUMにおける通常の設定はこれ。ほとんどのシナリオに適用される基本的な設定を含む。\nCustom設定：特定のニーズに合わせて詳細に設定を変更するオプションを指す。メインの構成には含まれない。\n※ Typicalは存在しない。\nTADM12_2 p.192"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "新しいインストール直後、すべてのABAPプログラムはそのロードを含むソースコードとして利用可能である。 ",
+    "options": [
+      {
+        "text": "正しい",
+        "status": "incorrect"
+      },
+      {
+        "text": "誤り",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「ソースだけ、ロードは後でSGENで」\nロード（バイトコード）：ソースコードからコンパイルされた、実行可能な形式のコード。\nTADM12_2 p.216"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "新規にインストールされた AS ABAP 7.5 システムで Transport Management System (TMS) を設定します。TMS の初期設定中にシステムによって実行されることは何ですか？注意：この質問には3つの正しい答えがあります。",
+    "options": [
+      {
+        "text": "ユーザーTMSADMが作成されます",
+        "status": "correct"
+      },
+      {
+        "text": "パスワードが必要とされる",
+        "status": "correct"
+      },
+      {
+        "text": "システム記述が提供される必要がある",
+        "status": "correct"
+      },
+      {
+        "text": "移送ディレクトリが作成される",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「アダム(TMSADM)さん、説明(システム記述)をパス(ワード)する」\nTMSADM：TMS の管理をするための専用ユーザーであり、初期設定時に自動的に作成される。\n※SUPPORT というユーザーは初期設定で自動的に作成されない。\n※TMSが移送ディレクトリを使ってSAPシステム間でデータを移送するため、移送ディレクトリはTMSより前に存在する必要がある。\nTADM12_2 p.160"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "データベースが変更ログを書き込まないモードで動作している場合、データは以下で復旧できます。",
+    "options": [
+      {
+        "text": "特定の日付と時刻（ポイントインタイムリカバリ）",
+        "status": "incorrect"
+      },
+      {
+        "text": "最後の完全バックアップ",
+        "status": "correct"
+      }
+    ],
+    "explanation": "※特定の日付と時刻にデータを復旧するには変更ログが必要です。\nポイントインタイムリカバリ (Point in Time Recovery)：特定の日時にデータベースを復旧する方法で、変更ログが必要。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAPシステム（SAP S/4HANAではない）をインストールした後、標準的なバックグラウンドジョブをスケジュールする必要があります。 ",
+    "options": [
+      {
+        "text": "正しい",
+        "status": "correct"
+      },
+      {
+        "text": "誤り",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "※何のためにバックグラウンドジョブをかけるかを考える⇒定期的なメンテナンスのため\nTADM12_2 p.159"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "AS JavaベースのSAPシステムにおいて、受信したリクエストを利用可能なサーバープロセスに分配するプロセスはどれですか？",
+    "options": [
+      {
+        "text": "Java Central Services (CS)",
+        "status": "incorrect"
+      },
+      {
+        "text": "Java Gateway Server",
+        "status": "incorrect"
+      },
+      {
+        "text": "Internet Communication Server (ICM)",
+        "status": "correct"
+      }
+    ],
+    "explanation": "Java Central Services (CS)：Javaメッセージサービス（MS）やJavaエンキューサービス（ES）を提供するインスタンス。\nJava Gateway Server：RFCゲートウェイを提供し、SAPシステム間や外部アプリケーションシステムとの通信を可能にする。\nICM (Internet Communication Manager)：クライアントからのリクエストを受け取り、サーバープロセスに分配する役割を持つプロセス。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "次のうち、SAProuterの利点はどれですか？注意：この質問には3つの正しい答えがあります。",
+    "options": [
+      {
+        "text": "リモートサポート接続に必要",
+        "status": "correct"
+      },
+      {
+        "text": "ネットワークセキュリティを強化",
+        "status": "correct"
+      },
+      {
+        "text": "ネットワーク設定を簡素化",
+        "status": "correct"
+      },
+      {
+        "text": "クライアントにSAPヘルプポータルへのアクセスを提供",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「SAPルーター、リモートでセキュリティ簡単」\nSAProuter：SAPシステムと外部ネットワークの間にあるプロキシサーバー。セキュリティ強化とネットワーク設定の簡素化を目的とする。\nリモートサポート接続：SAPのサポートチームが顧客のシステムにリモートでアクセスするための接続。\nTADM12_2 p.160"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "あなたはSAP Solution ManagerのJavaシステムをインストールしています。インストール中に設定できるJavaサーバーノードの最小数はいくつですか？ ",
+    "options": [
+      {
+        "text": "最小数は、インストールに使用されるサーバーのCPUコア数に等しい",
+        "status": "incorrect"
+      },
+      {
+        "text": "2",
+        "status": "incorrect"
+      },
+      {
+        "text": "1",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「1バンのJavaノード」\nTADM12_2 p.114"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "AS ABAP ベースの SAP システムを更新する際、Standard 戦略を使用すると、Single System 戦略を使用する場合よりもデータベースに必要な空き容量が少なくなります。",
+    "options": [
+      {
+        "text": "正しい",
+        "status": "incorrect"
+      },
+      {
+        "text": "誤り",
+        "status": "correct"
+      }
+    ],
+    "explanation": "Standard設定：SUMにおける通常の設定はこれ。ほとんどのシナリオに適用される基本的な設定を含む。更新中にシステムが利用可能な状態を保つために「シャドウインスタンス」を使用する。\nこれにより、更新中のシステムのダウンタイムが最小限に抑えられるが、シャドウシステムのために追加のディスクスペースが必要となる。\n\nSingle System 戦略：システム全体をダウンさせて更新を行う方式。通常、必要なディスクスペースは少ないが、ダウンタイムが長くなる。\nTADM12_2 p.193"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "ABAPディスパッチャのポートは32##番台の範囲内にあります。",
+    "options": [
+      {
+        "text": "正しい",
+        "status": "correct"
+      },
+      {
+        "text": "誤り",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「見に行こう（32）！ディスパッチャのポート」\nTADM12_2 p.59"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "あなたはEnqueue Replication Server (ERS) を使用するSAP S/4HANA 1809システムをインストールしています。ERSをどのようにインストールしますか？",
+    "options": [
+      {
+        "text": "ERSのインストールは、ABAP Central Services Instance (ASCS) のインストールにオプションで含まれます。",
+        "status": "incorrect"
+      },
+      {
+        "text": "ERSのインストールはSAPinstの専用実行によって行う必要があります。",
+        "status": "correct"
+      },
+      {
+        "text": "ERSのインストールはPrimary Application Serverのインストールに自動的に含まれます。",
+        "status": "incorrect"
+      },
+      {
+        "text": "ERSのインストールはABAP Central Services Instance (ASCS) のインストールに必須で含まれます。",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「ERSは専用実行が鍵」\nEnqueue Replication Server (ERS)：ロックテーブルのレプリカを保持し、システムの高可用性を確保するためのSAPインスタンス。\n※ERSのインストールには専用のSAPinst実行プロセスが必要。\nTADM12_2 P.238"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP S/4HANAサーバーシステムをSoftware Update Manager (SUM)を使用して更新する際、どのユーザーのパスワードを求められますか？注：この質問には2つの正しい答えがあります。 ",
+    "options": [
+      {
+        "text": "クライアント000のDDIC",
+        "status": "correct"
+      },
+      {
+        "text": "クライアント000のTMSADM",
+        "status": "incorrect"
+      },
+      {
+        "text": "クライアント000のSAP*",
+        "status": "incorrect"
+      },
+      {
+        "text": "SAP HANAテナントデータベースのSYSTEM",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「SUMの更新にはDDテナント」\nDDIC：SAPシステム内のメタデータ管理を行うユーザー。更新するときは、このユーザのパスワードが求められる。\nTMSADM：TMS の管理をするための専用ユーザー。初期設定時に自動的に作成される。\nSAP*：システムに初期設定として提供される特権ユーザー。\nTADM12_2 p.191"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "新しくインストールしたAS ABAPベースのSAPシステムでトランザクションOSS1を使用します。生成されるRFC接続の名前は何ですか？ ",
+    "options": [
+      {
+        "text": "SAPOSS",
+        "status": "correct"
+      },
+      {
+        "text": "NONE",
+        "status": "incorrect"
+      },
+      {
+        "text": "SERVICE",
+        "status": "incorrect"
+      },
+      {
+        "text": "BACK",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「OSS１⇒SAPOSS」\nRFC (Remote Function Call)：SAPシステム間またはSAPシステムと外部システム間でリモート関数を呼び出して実行するためのインターフェースプロトコル。\nSAPOSS：SAPサポートポータルへの接続。トランザクションOSS1を使用すると、この名前のRFC接続が自動的に生成される。\nOSS1：SAPシステム内からSAPサポートポータルへアクセスするためのトランザクション。SAPOSSという名前のRFC接続を生成する。\nTADM12_2 p.161"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP Solution Manager ABAPシステムのインストール中に、ABAPシステムに保存されているいくつかのユーザーマネジメントエンジン（UME）ユーザーのユーザーIDを設定する必要があります。ユーザーIDを提供する必要があるアカウントを特定してください。注：この質問には正解が2つあります。 ",
+    "options": [
+      {
+        "text": "ゲストユーザー",
+        "status": "correct"
+      },
+      {
+        "text": "データベースユーザー",
+        "status": "incorrect"
+      },
+      {
+        "text": "管理者ユーザー",
+        "status": "correct"
+      },
+      {
+        "text": "SAPシステムランドスケープディレクトリ（SLD）ユーザー",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「うめぇ(UME)、管理ゲスト」\nユーザーマネジメントエンジン（UME）：ユーザーとその権限を管理するためのエンジン。\nゲストユーザー（Guest User）：制限されたアクセス権を持つ基本的なユーザーアカウント。\nSAPシステムランドスケープディレクトリ（SLD）：システムランドスケープ情報を管理するツール。\nTADM12_2 p.91"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "インストール中に現在のアーカイブを提供するよう求められる可能性があるカーネルコンポーネントはどれですか？注意: この質問には3つの正しい答えがあります。",
+    "options": [
+      {
+        "text": "SAPHOSTAGENT.SAR",
+        "status": "correct"
+      },
+      {
+        "text": "SAPCAR.EXE",
+        "status": "incorrect"
+      },
+      {
+        "text": "SAPEXE.SAR",
+        "status": "correct"
+      },
+      {
+        "text": "SAPEXEDB.SAR",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「大文字、末尾SARを選べばよい」\n\nSAPカーネル：SAPシステムの基本的な実行エンジンで、システムの基本的な機能を提供する。\nアーカイブファイル (.SAR)：特定のソフトウェアコンポーネントやアップデートを含む圧縮ファイル。\nSAP Host Agent：SAPシステムの管理タスクを実行するエージェント。\nSAPCAR：SAPアーカイブファイルを解凍するためのユーティリティ。\nTADM12_2 p.90"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP S/4HANA Server 2021 システムをインストールしています。このインストール中に、このSAPシステムリリース用にリリースされた任意のカーネルを使用することができます。",
+    "options": [
+      {
+        "text": "正しい",
+        "status": "incorrect"
+      },
+      {
+        "text": "誤り",
+        "status": "correct"
+      }
+    ],
+    "explanation": "※ SAP S/4HANA Server 2021のインストールには、特定のバージョンのカーネルが必要。\nTADM12_2 p.60"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "AS Java 7.40以上の中央サービスインスタンスにはゲートウェイプロセスが含まれます。",
+    "options": [
+      {
+        "text": "正しい",
+        "status": "correct"
+      },
+      {
+        "text": "誤り",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "TADM12_2 p.22"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "どの内部サービス通信プロパティがプロセスを入力されたアドレスのみに、そしてすべてのローカルホストインターフェイスにバインドしますか？",
+    "options": [
+      {
+        "text": "Global",
+        "status": "incorrect"
+      },
+      {
+        "text": "Local",
+        "status": "incorrect"
+      },
+      {
+        "text": "Internal",
+        "status": "correct"
+      }
+    ],
+    "explanation": "Global：プロセスをすべてのネットワークインターフェイスにバインドする。つまり、どのネットワーク経由でもアクセス可能。\nLocal：通信ポートはローカルインターフェイスでの内部使用のためにのみ開かれる。つまり、外部からのアクセスはできない。\nInternal：プロセスを入力されたアドレスのみにバインドし、全てのローカルホストインターフェイスにもバインドできる。\nHA200 p.199"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAPinstのブラウザベースのインターフェースを使用して、インストールプロセス中に作成された重要なログファイルに直接アクセスすることができます。",
+    "options": [
+      {
+        "text": "正しい",
+        "status": "correct"
+      },
+      {
+        "text": "誤り",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "※SAPinstのブラウザベースのインターフェースを使うと、インストール中に生成されるログファイル（例えば、`sapinst.log`や`sapinst_dev.log`）に直接アクセスすることができる。\nTADM12_2 p.293"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "データベース移行オプション (DMO) はどのツールの一部ですか?",
+    "options": [
+      {
+        "text": "Support Package Manager (SPAM)",
+        "status": "incorrect"
+      },
+      {
+        "text": "Software Update Manager (SUM)",
+        "status": "correct"
+      },
+      {
+        "text": "Software Provisioning Manager (SWPM)",
+        "status": "incorrect"
+      },
+      {
+        "text": "SAP Add-On Installation Tool (SAINT)",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「DB移行は最初にやるからプロビジョニング」\nSupport Package Manager (SPAM)：SAPシステムにおけるサポートパッケージ（修正プログラムなど）の管理ツール\nSoftware Update Manager (SUM)：SAPシステムのアップデートやアップグレードを行うためのツール\nSoftware Provisioning Manager (SWPM)：SAPシステムのプロビジョニング（初期設定やインストール）を行うツール。DMOはSWPMの一部として提供される。\nSAP Add-On Installation Tool (SAINT)：SAPシステムにアドオンをインストールするためのツール\n\nHA200 p.21 DMOはSUMの一部！"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP HANAのハードウェアが、実運用でSAP HANAを動作させるために必要な最低限の性能基準を満たしているかどうかを判断するために、SAP HANA Hardware and Cloud Measurementツールを使用できるシステムランドスケープの種類はどれですか？注意: この質問には正しい答えが2つあります。",
+    "options": [
+      {
+        "text": "スタンバイホストセットアップ",
+        "status": "incorrect"
+      },
+      {
+        "text": "シングルホストセットアップ",
+        "status": "correct"
+      },
+      {
+        "text": "スケールアウトセットアップ",
+        "status": "correct"
+      },
+      {
+        "text": "システムレプリケーションセットアップ",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「分散したとしても１つのサーバに対して使用する」\nスタンバイホスト：プライマリホストがダウンした場合に代わりに動作するホスト。最低性能基準を測定するためのものではない。\nシングルホストセットアップ：一つのサーバーでSAP HANAを動作させる配置。\nスケールアウトセットアップ：複数のサーバーを連携させて、一つのシステムとして動作させる配置。\nシステムレプリケーション：データの冗長性と高可用性を確保するために、データを複数の場所に複製する技術。直接的な性能測定の対象にならない。\nHA200 p.70"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "あなたはSAPシステムにEnqueue Replication Server（ERS）をインストールしました。ERSの障害が発生した場合に備えて、フォールバックの安全策としてタイプE（Enqueue）の動的ワークプロセスを設定することが推奨されています。 ",
+    "options": [
+      {
+        "text": "正しい",
+        "status": "incorrect"
+      },
+      {
+        "text": "誤り",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「タイプEは『要らない』のE」\nEnqueue Replication Server (ERS)：スタンドアロンのEnqueueサーバーが障害を起こした際に、ロックテーブルの状態を保持し、フェイルオーバーをサポートするサーバー。\n※ERSがエンキュ―をサポートするので追加でWPを用意する必要はない。\nTADM12_2 p.306"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "ASCS は ERS ​​の前提条件です。",
+    "options": [
+      {
+        "text": "正しい",
+        "status": "correct"
+      },
+      {
+        "text": "誤り",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "※ERSはEnqueueサーバーのロックテーブルを複製するのでASCSを先にインストールする必要がある。\nTADM12_2 p.306"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP HANAハードウェアディレクトリにリストされている認証済みのハードウェアコンポーネントはどれですか？注意：この質問には正しい答えが2つあります。 ",
+    "options": [
+      {
+        "text": "ネットワークスイッチ",
+        "status": "incorrect"
+      },
+      {
+        "text": "エンタープライズストレージシステム",
+        "status": "correct"
+      },
+      {
+        "text": "アプライアンス",
+        "status": "correct"
+      },
+      {
+        "text": "エンタープライズバックアップソリューション",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「ストレージとアプライアンスという目に見えるハードウェアが正解」\nハードウェアディレクトリ：特定のソフトウェアやシステムで利用可能な認証済みハードウェアのリスト\nネットワークスイッチ：データセンター内のネットワーク通信を管理するハードウェア\nエンタープライズストレージシステム：大規模なデータを保存するための高性能なストレージシステム\nアプライアンス：特定の機能を実行するために設計された統合ハードウェアおよびソフトウェアシステム\nHA200 p.69"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP HANAテーラードデータセンターインテグレーション（TDI）は、データセンターにおけるSAP HANAの統合に関するオープンで柔軟なアプローチです。TDIは既存のハードウェアコンポーネントとプロセスを再利用することで、ハードウェアおよび運用コストを削減できます。 ",
+    "options": [
+      {
+        "text": "正しい",
+        "status": "correct"
+      },
+      {
+        "text": "誤り",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "テーラードデータセンターインテグレーション (TDI)：SAP HANAをデータセンターに統合するための柔軟なアプローチ。既存のハードウェアを再利用することで、コスト削減を目指す。\nHA200 p.97"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "WindowsにSAPシステムをインストールするために使用されるユーザーが満たすべき条件はどれですか？ ",
+    "options": [
+      {
+        "text": "「Install」と名付けられている必要がある",
+        "status": "incorrect"
+      },
+      {
+        "text": "ローカル管理者権限を持っている必要がある",
+        "status": "correct"
+      },
+      {
+        "text": "「SapServicesSID」と名付けられている必要がある（SIDはインストールするシステムの選択されたSIDに置き換える）",
+        "status": "incorrect"
+      },
+      {
+        "text": "「sapSID」と名付けられている必要がある（SIDはインストールするシステムの選択されたSIDに置き換える） ",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "ローカル管理者権限 (Local Administrator Rights)：コンピュータ上でインストールや設定変更を行うための高いレベルの権限。\nTADM12_2 294"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP HANAアプライアンスのサイズ設定を行う際に考慮しなければならないコンポーネントはどれですか？ ",
+    "options": [
+      {
+        "text": "CPU",
+        "status": "incorrect"
+      },
+      {
+        "text": "メモリ",
+        "status": "correct"
+      },
+      {
+        "text": "ストレージ",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "※SAP HANAはインメモリデータベースであり、データを主にメモリ（RAM）に保存して処理を高速化するため、メモリの容量が特に重要\nHA200 p.69"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "データボリュームの最小スペース要件はどれくらいですか? 注: この質問には 2 つの正解があります",
+    "options": [
+      {
+        "text": "Min. 0.5 * RAM",
+        "status": "incorrect"
+      },
+      {
+        "text": "3 * RAM (Appliance)",
+        "status": "correct"
+      },
+      {
+        "text": "Min. 1 * RAM",
+        "status": "incorrect"
+      },
+      {
+        "text": "1.2 * RAM (TDI)",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「ラムさん、TDIの料金は２割増し」\nHA200 p.69"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "どの Web サイトから、完全な SAP HANA ドキュメントを .zip ファイルとして安全にダウンロードできますか?",
+    "options": [
+      {
+        "text": "https://launchpad.support.sap.com/#/softwarecenter",
+        "status": "incorrect"
+      },
+      {
+        "text": "https://community.sap.com/topics/hana",
+        "status": "incorrect"
+      },
+      {
+        "text": "https://help.sap.com/docs/SAP_HANA_PLATFORM",
+        "status": "correct"
+      }
+    ],
+    "explanation": "HA200 p.21"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "AS ABAP ベースの SAP システムをインストールしています。対応する命名規則に従って、許可されている SAP システム ID を特定してください。注: この質問には 2 つの正解があります。",
+    "options": [
+      {
+        "text": "LA6",
+        "status": "correct"
+      },
+      {
+        "text": "SAP",
+        "status": "incorrect"
+      },
+      {
+        "text": "B_1",
+        "status": "incorrect"
+      },
+      {
+        "text": "NYC",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「ロック(LA6)なニューヨーク(NYC)」\n※SIDは3つの英数字で構成され、最初の文字はアルファベットでなければならない。また、大文字のみが使用可能。SAPは既に予約されているため使用できない。\nTADM10_1 p.182"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "次の特徴のうち、インストールプロセス中に使用するべき正確なインストールガイドドキュメントを特定するのに役立つものはどれですか？注意: この質問には3つの正しい答えがあります。",
+    "options": [
+      {
+        "text": "使用される仮想化技術",
+        "status": "incorrect"
+      },
+      {
+        "text": "使用されるオペレーティングシステム",
+        "status": "correct"
+      },
+      {
+        "text": "使用されるデータベースソフトウェア",
+        "status": "correct"
+      },
+      {
+        "text": "インストールするSAPソフトウェアのリリース",
+        "status": "correct"
+      }
+    ],
+    "explanation": "インストールガイドは「オデサプ：オペレーティングシステム (O)、データベース (D)、SAPリリース (SAP) 」\nTADM12_2 p.293"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP HANAにより、SAPはどのようなソフトウェアの革新をもたらしましたか？注意：この質問には正しい答えが2つあります。 ",
+    "options": [
+      {
+        "text": "列ストアとデルタストア",
+        "status": "correct"
+      },
+      {
+        "text": "圧縮と解凍",
+        "status": "incorrect"
+      },
+      {
+        "text": "パーティショニング",
+        "status": "correct"
+      },
+      {
+        "text": "列ストアへの挿入のみ",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「HANAの革新でストアパーティ」\n列ストア：データを列ごとに格納するデータベースの形式。クエリ性能が向上する。\nデルタストア：更新データを一時的に保存する場所。後でメインストアに統合される。\n圧縮：データを小さいサイズにする技術。ストレージとメモリ使用量を減らす。\nパーティショニング：大きなテーブルを複数の部分に分割して管理する技術。クエリ性能が向上する。\nHA200 p.21"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP システムのインストールを開始する前に、次の情報源を考慮してください",
+    "options": [
+      {
+        "text": "SUMガイド",
+        "status": "incorrect"
+      },
+      {
+        "text": "インストールガイド",
+        "status": "correct"
+      },
+      {
+        "text": "SAPエンハンスメントパッケージインストールガイド",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "SUM (Software Update Manager)：SAPシステムの更新やアップグレードのためのツール\nSAPエンハンスメントパッケージインストールガイド (SAP Enhancement Package Installation Guide)：SAPシステムに新しい機能を追加するためのエンハンスメントパッケージのインストール手順を説明するガイド。\nSAPエンハンスメントパッケージ (SAP Enhancement Package)：既存のSAPシステムに新しい機能を追加するためのパッケージ。"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "どのファイルに、インストール手順ごとの通知がすべて記録されますか?",
+    "options": [
+      {
+        "text": "sapinst.log",
+        "status": "incorrect"
+      },
+      {
+        "text": "packages.xml",
+        "status": "incorrect"
+      },
+      {
+        "text": "sapinst_dev.log",
+        "status": "correct"
+      },
+      {
+        "text": "dialog.xml",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "sapinst.log：インストールの進行状況を記録するログファイル\npackages.xml：ソフトウェアパッケージの管理に使用されるファイル\nsapinst_dev.log：すべてのインストールステップの詳細な通知を記録するログファイル\ndialog.xml：インストール中に使用されるダイアログを含むファイル\nTADM12_2 p.269"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "Unix上で標準インストール直後のAS ABAP 7.5（またはそれ以上）ベースのSAPシステムで見つかるファイルシステムパスはどれですか？（SIDはインストールされるシステムの選択されたSIDに置き換えられます） 注意: この質問には正しい答えが2つあります。",
+    "options": [
+      {
+        "text": "/usr/sap/SID/DVEBMGS",
+        "status": "incorrect"
+      },
+      {
+        "text": "/usr/sap/trans",
+        "status": "correct"
+      },
+      {
+        "text": "/usr/sap/SID/SYS",
+        "status": "correct"
+      },
+      {
+        "text": "/usr/sap/SID/SCS",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「ABAPベースのファイルシステムパスは Tran・SYS」\n\n/usr/sap/SID/DVEBMGS：SAPシステムのインスタンスディレクトリの一部。DVEBMGSは以前のバージョンで使用されていた。\n/usr/sap/trans：SAPの移送ディレクトリで、システム間のデータ移動に使用される。標準インストール後に必ず存在するディレクトリ。\n/usr/sap/SID/SYS：システム全体で共有されるファイル（例：グローバルファイル、プロファイル、カーネル）を格納するディレクトリ。\n/usr/sap/SID/SCS：SAP Central Servicesのディレクトリ。ただし、AS JavaベースのSAPシステムに関連する。\nTADM12_2 p.295"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "次のうち、WindowsオペレーティングシステムにSAPシステムをインストールする際に実行されるWindows固有の準備はどれですか？注意: この質問には2つの正しい答えがあります。 ",
+    "options": [
+      {
+        "text": "ユーザーグループ「Administrators」を作成する",
+        "status": "incorrect"
+      },
+      {
+        "text": "インストールユーザーの準備",
+        "status": "correct"
+      },
+      {
+        "text": "Windowsファイルシステムのチェック",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「\"Administrator\"がない選択肢が正解」\n※「Administrators」グループはWindowsのデフォルトの管理者グループであり、特別に作成する必要はない。\n※ SAPシステムのインストールには特定のインストールユーザーを作成し、そのユーザーに適切な権限を与える必要がある。\n※ SAPシステムのインストール前に、Windowsファイルシステム（特にNTFS形式であること）を確認し、必要な空きスペースがあるかをチェックする必要がある。\nTADM12_2 p.294"
+  },
+  {
+    "source_sheet": "Udemy問題集 by ERP Trainer",
+    "question": "SAP HANAライフサイクル管理ツールのうち、SAP HANAデータベースシステムのインストールに使用できるものはどれですか？ ",
+    "options": [
+      {
+        "text": "hdbupd",
+        "status": "incorrect"
+      },
+      {
+        "text": "hdblcmweb",
+        "status": "incorrect"
+      },
+      {
+        "text": "Resident hdblcm",
+        "status": "incorrect"
+      },
+      {
+        "text": "hdblcm",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「L(ife) C(ycle) があるものが正解」\nhdbupd：一般的にはSAP HANAのアップデートツール。\nhdblcmweb：Webインターフェースを使用したSAP HANAのライフサイクル管理ツール。\n※「Resident hdblcm」というツールは存在しません。\nhdblcm：SAP HANAデータベースライフサイクル管理ツール。\nHA200 p.96"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "ABAP CDSビューに基づいて作成できるものは何ですか？ 注：この質問には3つの正解があります。",
+    "options": [
+      {
+        "text": "検索コネクタ",
+        "status": "correct"
+      },
+      {
+        "text": "SAPゲートウェイサービス",
+        "status": "correct"
+      },
+      {
+        "text": "SAP Fioriエレメント",
+        "status": "correct"
+      },
+      {
+        "text": "SAP Fioriカタログ",
+        "status": "incorrect"
+      },
+      {
+        "text": "データベーステーブル",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "※ ABAP CDSビューは、データベースレベルでの高度なデータモデルを定義するためのもの。これにより、データの検索や表示、操作が効率的に行えるようになる。\n※ Fioriカタログはアプリケーションの集まりを管理するためのもの"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "あなたはSAP Fioriランチパッドを設定レイヤーで設定しています。 何を指定する必要がありますか？ 注意：この質問には2つの正しい答えがあります。",
+    "options": [
+      {
+        "text": "カスタマイズリクエスト",
+        "status": "incorrect"
+      },
+      {
+        "text": "ワークベンチリクエスト",
+        "status": "correct"
+      },
+      {
+        "text": "ソフトウェアコンポーネント名",
+        "status": "incorrect"
+      },
+      {
+        "text": "パッケージ名",
+        "status": "correct"
+      }
+    ],
+    "explanation": "設定層 (Configuration Layer)：システム全体の基本的な設定を行う層。すべてのクライアントに対して有効。\nカスタマイズ層 (Customizing Layer)：設定層の設定を基に、クライアント単位で微調整を行う層。\nパーソナライズ層 (Personalization Layer)：エンドユーザーが個々に設定を変更できる層。\n\nワークベンチリクエスト：開発オブジェクト（プログラム、テーブルなど）を保存するためのリクエスト。設定層で使用。\nパッケージ名：開発オブジェクトを整理するために必要。設定層で使用。"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "次のうち、SAP Fiori elementsフレームワークに基づいているものはどれですか？この質問には3つの正しい答えがあります。",
+    "options": [
+      {
+        "text": "概要ページ",
+        "status": "correct"
+      },
+      {
+        "text": "デザインスタジオ",
+        "status": "incorrect"
+      },
+      {
+        "text": "リストレポート",
+        "status": "correct"
+      },
+      {
+        "text": "オブジェクトページ",
+        "status": "correct"
+      },
+      {
+        "text": "ウェブダイナプロ",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "デザインスタジオ：SAPのデザインツールで、主にダッシュボードやレポートを作成するためのもの\nウェブダイナプロ：SAPの古いUI技術の一つで、主にビジネスアプリケーションの開発に使用される。\nTADM10_1 p.422"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "以下の情報のうち、どれが<transport directory>/tmpディレクトリに書き込まれますか？",
+    "options": [
+      {
+        "text": "移送ツールが<transport directory>/logディレクトリに移動する前に作成するログファイル",
+        "status": "correct"
+      },
+      {
+        "text": "移送ステップのログ(ALOG)ファイル",
+        "status": "incorrect"
+      },
+      {
+        "text": "tpシステムログ(SLOG)ファイル",
+        "status": "incorrect"
+      },
+      {
+        "text": "移送ルートに関する一時的な情報、システムランドスケープ全体に保存・配布される前のもの",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "※ ALOGとSLOGは「log」ディレクトリに保存される。\n※移送ツールが「tmp」ディレクトリに一時的にログファイルを保存し、その後「log」ディレクトリに移動する。"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "以下のような非ABAPシステムの3システムランドスケープ（DEV – QAS – PRD）に対して、Enhanced Change and Transport System（CTS+）を設定します。CTSシステムとしてSAP S/4HANAシステムを使用しています。CTSシステム内でソースシステムDEVに関して実行すべき設定手順はどれですか？ 注意：この質問には正しい答えが2つあります。",
+    "options": [
+      {
+        "text": "インターネットコミュニケーションフレームワーク（トランザクションSICF）でサービスCTS_ORGANIZERを有効化する。",
+        "status": "correct"
+      },
+      {
+        "text": "タイプ3のRFC宛先TMSADM@DEV.<domain>とTMSSUP@DEV.<domain>を作成する。",
+        "status": "incorrect"
+      },
+      {
+        "text": "トランスポート管理システムでDEVシステムを「非ABAPシステム」として作成する。",
+        "status": "correct"
+      },
+      {
+        "text": "デプロイツールを指すタイプGのRFC宛先を作成する。",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「サービスをアクティブにして、TMSに「非ABAPシステム」として作成する」\n\nCTS (Change and Transport System)：システム間で変更や移送依頼を管理するためのSAPのフレームワーク。\nEnhanced Change and Transport System (CTS+)：SAPのCTSの拡張版で、非ABAPオブジェクトを含むさまざまなオブジェクトのトランスポートをサポートする。\nInternet Communication Framework (SICF)：SAPシステム内でインターネットサービスを設定・管理するためのツール。"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "AS JavaベースのSAPシステムを起動する際、sapstartsrvによって書き込まれる起動優先度ファイルはどこにありますか？",
+    "options": [
+      {
+        "text": "$(DIR_HOME)、サブディレクトリ data",
+        "status": "correct"
+      },
+      {
+        "text": "$(DIR_GLOBAL)、サブディレクトリ sapcontrol",
+        "status": "incorrect"
+      },
+      {
+        "text": "$(DIR_GLOBAL)、サブディレクトリ profile",
+        "status": "incorrect"
+      },
+      {
+        "text": "$(DIR_HOME)、サブディレクトリ work",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "sapstartsrv：SAPシステムの起動、停止、監視を行うサービス。\nDIR_HOME：各SAPインスタンスのホームディレクトリ。\nDIR_GLOBAL：全SAPインスタンスが共有するグローバルディレクトリ。起動優先度は全システムに共有される方に格納されるよね？"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "SAPは、SAP HANAをカスタマイズデータセンター統合（TDI）シナリオでインストールする前に何をサイズすることを推奨しますか？ 注意：この質問には正しい答えが3つあります。",
+    "options": [
+      {
+        "text": "永続ストレージ",
+        "status": "correct"
+      },
+      {
+        "text": "秒あたりの入力/出力操作（IOPS）",
+        "status": "incorrect"
+      },
+      {
+        "text": "メインメモリ",
+        "status": "correct"
+      },
+      {
+        "text": "ネットワークスループット",
+        "status": "incorrect"
+      },
+      {
+        "text": "SAPアプリケーションパフォーマンス標準（SAPS)",
+        "status": "correct"
+      }
+    ],
+    "explanation": "永続ストレージ (Persistent storage)：システム障害が発生してもデータが失われないようにするためのストレージ。データの信頼性と永続性を確保するため。\nTDI (Tailored Data Center Integration)：カスタマイズされたデータセンター統合。\nIOPS (Input/Output Operations Per Second)：ストレージの性能指標。\nSAPS：全体的なシステム性能を評価するために使用される指標であり、適切なリソース計画を立てるために重要。"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "AS ABAPでスプール要求を監視している際に、ステータス<F5>が表示されました。このステータスは何を意味しますか？",
+    "options": [
+      {
+        "text": "スプール要求がホストスプールシステムによってまだ処理されていません。",
+        "status": "incorrect"
+      },
+      {
+        "text": "要求が出力デバイスに渡され、最終ステータスがまだ返されていません。",
+        "status": "incorrect"
+      },
+      {
+        "text": "複数の出力要求があり、少なくとも2つの要求が異なるステータスを持っています。",
+        "status": "correct"
+      },
+      {
+        "text": "スプール要求がホストスプールシステムによって処理され、アーカイブ待ちです。",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "スプール要求のステータス一覧とその意味\n   - Waiting：処理待ち。\n   - Print.：出力待ち。\n   - Archive：アーカイブ待ち。\n   - <F5>：複数の出力要求があり、異なるステータスを持っている。\nTADM12_2 p.340"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "ABAP Central Servicesインスタンスが最低限提供するプロセスはどれですか？ 注意：この質問には2つの正しい答えがあります。",
+    "options": [
+      {
+        "text": "Enqueueレプリケーションサーバー ",
+        "status": "incorrect"
+      },
+      {
+        "text": "SAPゲートウェイ ",
+        "status": "incorrect"
+      },
+      {
+        "text": "ABAPエンキューサーバー ",
+        "status": "correct"
+      },
+      {
+        "text": "ABAPメッセージサーバー",
+        "status": "correct"
+      }
+    ],
+    "explanation": "Enqueueレプリケーションサーバー：Enqueueサーバーのレプリケーションを行うためのサーバー。必須ではない。\n※SAPゲートウェイはABAP Central Servicesインスタンスの一部ではなく、ABAP Dispatcherの一部として存在する。"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "SAP Fioriアプリで、動的タイルのデータソースとして使用されるのはどれですか？ ",
+    "options": [
+      {
+        "text": "RFC",
+        "status": "incorrect"
+      },
+      {
+        "text": "InA",
+        "status": "incorrect"
+      },
+      {
+        "text": "BSP",
+        "status": "incorrect"
+      },
+      {
+        "text": "Odata",
+        "status": "correct"
+      }
+    ],
+    "explanation": "動的タイル (Dynamic Tile)：リアルタイムでデータを更新するタイル。\nInA (Information Access)：SAP HANAでのデータアクセスのためのプロトコル。InAは主に分析アプリケーションで使用され、動的タイルには一般的ではない。\nBSP (Business Server Pages)：SAPのウェブアプリケーションを開発するためのフレームワーク。ウェブページの生成に使われる。"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "SAP HANAシステムのテナントデータベースに配置されているサービスはどれですか？",
+    "options": [
+      {
+        "text": "インデックスサーバー ",
+        "status": "correct"
+      },
+      {
+        "text": "コンパイルサーバー",
+        "status": "incorrect"
+      },
+      {
+        "text": "ネームサーバー",
+        "status": "incorrect"
+      },
+      {
+        "text": "Webディスパッチャ",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "テナントデータベース：複数の独立したデータベースが共存するマルチテナント環境における個々のデータベース。\nインデックスサーバー：各テナントデータベースにおいてデータの保存と処理を担当する主要なサーバー。テナントデータベースごとに存在し、データ処理のためのエンジンを持つ\nコンパイルサーバー：SQLスクリプトやストアドプロシージャのコンパイルを行う。システム全体で共有されるシステムデータベースに存在。\nネームサーバー：システム全体の構造や配置に関する情報を管理し、各テナントデータベースの情報を保持。"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "起動中に、AS JavaベースのSAPシステムがエラーを生成します。マネージャとサービスに関する情報が含まれているファイルはどれですか？",
+    "options": [
+      {
+        "text": "std_server<X>.out ",
+        "status": "correct"
+      },
+      {
+        "text": "dev_icm",
+        "status": "incorrect"
+      },
+      {
+        "text": "dev_jstart",
+        "status": "incorrect"
+      },
+      {
+        "text": "jvm_bootstrap.out",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "std_server<X>.out：各ノードのマネージャとサービスのデフォルト出力ファイル。\ndev_icm：インターネット通信マネージャ（ICM）のトレースファイル。\ndev_jstart：インスタンスコントローラーのトレースファイル。\njvm_bootstrap.out：Java仮想マシン（JVM）のブートストラップの出力ファイル。"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "次のうち、SAPシステムおよびSAPインスタンスを起動または停止するためのコマンドラインツールはどれですか？",
+    "options": [
+      {
+        "text": "Icmon",
+        "status": "incorrect"
+      },
+      {
+        "text": "Jsmon",
+        "status": "incorrect"
+      },
+      {
+        "text": "SAPControl",
+        "status": "correct"
+      },
+      {
+        "text": "SAP MC",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "Icmon：SAPの監視用ツールの１つ\nJsmon：SAP Javaシステムの監視ツール\nSAPConstrol：SAPシステムやインスタンスを起動または停止するための公式なコマンドラインツール。\nSAP MC：SAP Management Console、SAPシステムの管理を行うためのGUIベースのツール。"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "あなたは、ネイティブSAP HANAアプリケーションの移送のために変更と移送システム（CTS）を使用しています。これらのアプリケーションに対して、CTSシステムで移送依頼を作成するためにどのツールを使用できますか？",
+    "options": [
+      {
+        "text": "Transport Organizer Web UI（トランザクション STMS）",
+        "status": "correct"
+      },
+      {
+        "text": "Transport Organizer（拡張ビュー）（トランザクション SE01）",
+        "status": "incorrect"
+      },
+      {
+        "text": "Transport Organizer（トランザクション SE09）",
+        "status": "incorrect"
+      },
+      {
+        "text": "Database Assistant（トランザクション DB50N）",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "CTS（Change and Transport System）：SAPシステムでの変更と移送を管理するシステム。特に開発から本番環境へのコードや設定の移送をサポートする。\nTransport Organizer Web UI（トランザクション STMS）：Webベースのユーザインターフェースを持つ移送管理ツール。SAP HANAアプリケーションの移送リクエストを作成するために使用される。\nTransport Organizer（トランザクション SE01）：ABAPオブジェクトの移送に使用され、ネイティブSAP HANAアプリケーションには適さない。\nTransport Organizer（トランザクション SE09）：主にABAPオブジェクトの移送に使用され、ネイティブSAP HANAアプリケーションには適さない。"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "SAP_FIORI_FOUNDATION_S4 タスクリストを使用して、どのような操作を実行できますか? 注: この質問には ３つの正解があります。",
+    "options": [
+      {
+        "text": "SAPUI5アプリケーションインデックスの計算のためのジョブをスケジュールする。",
+        "status": "incorrect"
+      },
+      {
+        "text": "SAP Fioriの基盤となるロールを生成する。",
+        "status": "correct"
+      },
+      {
+        "text": "バックエンドカタログを複製する。",
+        "status": "correct"
+      },
+      {
+        "text": "HTML用SAP GUIを有効にする。",
+        "status": "correct"
+      },
+      {
+        "text": "生成されたビジネスロールを持つユーザーを作成する。",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「基礎カタログとFiori, S/4を有効にする」\nSAP_FIORI_FOUNDATION_S4：SAP Fioriアプリケーションを迅速にセットアップし、ユーザーがこれらのアプリケーションを効率的に使用できるようにするための基本的な設定と構成を行う。\n※インデックスを計算するためのジョブをスケジュールする：\nインデックス(アプリケーションのリソース（JavaScriptファイル、CSSファイルなど）の一覧やメタデータを含むデータベース)を定期的に更新するためのプロセスを設定すること"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "上から下まで、NetWeaver Administrator (NWA) の階層構造はどのようになっていますか？",
+    "options": [
+      {
+        "text": "ワークセット → ワークセンター → ファンクション",
+        "status": "incorrect"
+      },
+      {
+        "text": "ワークセンター → ファンクション → ワークセット",
+        "status": "incorrect"
+      },
+      {
+        "text": "ワークセンター → ワークセット → ファンクション",
+        "status": "correct"
+      },
+      {
+        "text": "ファンクション → ワークセンター → ワークセット",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "ワークセンター（Work Center）：NWAの最上位の管理単位。特定の機能やタスクをまとめたグループ。\nワークセット（Work Set）：ワークセンター内のサブグループ。関連する管理オプションをまとめたもの。\nファンクション（Function）：実行可能な具体的な管理機能。"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "SAP NetWeaver Administrator (NWA) で、どの Java システムプロパティカテゴリの下に AS Javaベースのマネージャを見つけることができますか？",
+    "options": [
+      {
+        "text": "カーネル",
+        "status": "correct"
+      },
+      {
+        "text": "VM環境",
+        "status": "incorrect"
+      },
+      {
+        "text": "アプリケーション",
+        "status": "incorrect"
+      },
+      {
+        "text": "サービス",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "※AS Java ベースのマネージャーはシステムの基本的な管理機能を提供するため、カーネルに該当する。"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "AS ABAPベースのSAPシステムで、ダイアログインタラクションが有効化されておらず、パスワードの有効期間に従うユーザーを作成する必要があります。どのユーザータイプを選びますか？ ",
+    "options": [
+      {
+        "text": "通信データ",
+        "status": "correct"
+      },
+      {
+        "text": "サービス",
+        "status": "incorrect"
+      },
+      {
+        "text": "リファレンス",
+        "status": "incorrect"
+      },
+      {
+        "text": "システム",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "ユーザータイプとその特徴\n   - Communications Data：ダイアログログオン不可、パスワード有効期間適用。\n   - Service：ダイアログログオン可能、パスワード有効期間適用外。\n   - Reference：ダイアログログオン不可、追加権限付与用。\n   - System：ダイアログログオン不可、パスワード有効期間適用外。"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "AS ABAPベースのSAPシステムにおけるバックグラウンドジョブの開始条件はどれですか？ 注：この質問には3つの正しい答えがあります。",
+    "options": [
+      {
+        "text": "外部コマンドの定義",
+        "status": "incorrect"
+      },
+      {
+        "text": "オペレーションモードの切り替え",
+        "status": "correct"
+      },
+      {
+        "text": "特定の日付と時刻に達する",
+        "status": "correct"
+      },
+      {
+        "text": "バックグラウンドイベントのトリガー",
+        "status": "correct"
+      },
+      {
+        "text": "ジョブサーバーグループの作成",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "バックグラウンドジョブ：ユーザーの介入なしに、システムが自動的に実行するタスク。\n外部コマンド：SAPシステム外部のスクリプトやシステムコマンドを実行するためのもの。開始条件ではない。\nオペレーションモード：システムの運用モードで、リソースの割り当てやジョブの実行タイミングを制御する。"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "ユーザーのSAP FioriランチパッドにSAP Fioriグループを追加したいと考えています。SAP Fioriグループをどこに割り当てる必要がありますか？",
+    "options": [
+      {
+        "text": "ユーザーに割り当てられたユーザーグループに",
+        "status": "incorrect"
+      },
+      {
+        "text": "ユーザーのパラメータIDに",
+        "status": "incorrect"
+      },
+      {
+        "text": "ユーザーに割り当てられたロールに",
+        "status": "correct"
+      },
+      {
+        "text": "ユーザーに割り当てられた認証プロファイルに",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "※ SAP Fioriグループは、ユーザーのロールに割り当てる必要がある。ロールは、ユーザーがどのアプリケーションや機能にアクセスできるかを定義する。\n※ グループをロールに割り当てることで、そのロールを持つすべてのユーザーがそのグループにアクセスできるようになる。"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "ABAPベースのSAPシステムにおけるロールメンテナンストランザクション（PFCG）で、ユーザーマスターレコードにロールの権限を付与するステップはどれですか？ ",
+    "options": [
+      {
+        "text": "ユーザーをロールに割り当てる",
+        "status": "incorrect"
+      },
+      {
+        "text": "ロールを保存する",
+        "status": "incorrect"
+      },
+      {
+        "text": "プロファイルを生成する",
+        "status": "incorrect"
+      },
+      {
+        "text": "ユーザー比較を実行する",
+        "status": "correct"
+      }
+    ],
+    "explanation": "PFCG (Profile Generator)：SAPでのロールや権限を管理するためのトランザクションコード。\n１．役割の作成および保存\n  - 役割を作成し、必要なメニュー項目やトランザクションコードを追加する。\n  \n２．プロファイルの生成\n  - 役割に関連する承認プロファイルを生成する。\n\n３．ユーザーへの役割の割り当て\n  - 役割を特定のユーザーに割り当てる。\n\n４．ユーザー比較の実行\n  - ユーザー比較を実行して、生成されたプロファイルがユーザーマスターレコードに反映される。"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "あなたは、AS JavaベースのSAPシステム（例えばSAP Enterprise Portal）の移送ドメインを設定したいと考えています。移送管理システム（トランザクションコードSTMS）のシステム概要エリアで、これらのシステムに対してどのエントリタイプを作成しますか？ ",
+    "options": [
+      {
+        "text": "バーチャル(仮想)システム",
+        "status": "incorrect"
+      },
+      {
+        "text": "外部システム",
+        "status": "incorrect"
+      },
+      {
+        "text": "Javaスタック構成",
+        "status": "incorrect"
+      },
+      {
+        "text": "Non-ABAPシステム",
+        "status": "correct"
+      }
+    ],
+    "explanation": "※TMSの設定時に使用されるエントリタイプには、「バーチャルシステム」、「外部システム」、「Non-ABAPシステム」があり、AS Javaベースのシステムには「Non-ABAPシステム」を選択することが適切である。"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "AS JavaベースのSAPシステムの起動問題についての情報を見つけることができるsapmntのサブディレクトリはどれですか？ 注：この質問には正しい答えが2つあります",
+    "options": [
+      {
+        "text": "D<インスタンス番号>/work",
+        "status": "incorrect"
+      },
+      {
+        "text": "J<インスタンス番号>/work",
+        "status": "correct"
+      },
+      {
+        "text": "J<インスタンス番号>/log",
+        "status": "incorrect"
+      },
+      {
+        "text": "SCS<インスタンス番号>/work",
+        "status": "correct"
+      }
+    ],
+    "explanation": "D<インスタンス番号>：ABAPインスタンス\nJ<インスタンス番号>：Javaインスタンス\nSCS<インスタンス番号>：セントラルサービスインスタンス\nworkディレクトリ：各インスタンスの作業ディレクトリで、ログやトレースファイルが含まれる。\n\n※J<インスタンス番号>/workではなく、J<インスタンス番号>/logが正解とする声もあり"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "Javaのスタートアップとコントロールフレームワークを使用して、AS JavaベースのSAPシステムをシャットダウンする際、次のうちどれがサーバープロセスを停止しますか？ ",
+    "options": [
+      {
+        "text": "インスタンスコントローラー",
+        "status": "incorrect"
+      },
+      {
+        "text": "データベース",
+        "status": "incorrect"
+      },
+      {
+        "text": "ICM（インターネットコミュニケーションマネージャ）",
+        "status": "incorrect"
+      },
+      {
+        "text": "Sapstartsrv",
+        "status": "correct"
+      }
+    ],
+    "explanation": "sapstartsrv：SAPシステムの起動、停止、監視を行うサービス。"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "Microsoft WindowsベースのAS ABAPにローカルでプリンターを設定したいと思っています。どのホストスプールアクセス方法を使用する必要がありますか？",
+    "options": [
+      {
+        "text": "L",
+        "status": "incorrect"
+      },
+      {
+        "text": "U",
+        "status": "incorrect"
+      },
+      {
+        "text": "G",
+        "status": "incorrect"
+      },
+      {
+        "text": "C",
+        "status": "correct"
+      }
+    ],
+    "explanation": "各ホストスプールアクセス方法の用途：\n   - \"L\": Unixベースのシステムでのローカルプリンティング（プリンターがSAPサーバーと同じホスト上に存在する場合のプリンティング。）LocalのL\n   - \"U\": UNIX Berkeleyプロトコルを使ったリモートプリンティング（プリンターがネットワークを介して接続されている場合のプリンティング。）UnixのU\n   - \"G\": フロントエンドプリンティング（SAP GUIなどのフロントエンドアプリケーションから直接プリントする方法。）GUIのG\n   - \"C\": Windowsベースのシステムでのローカルプリンティング。"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "あなたはLinux上で動作するAS ABAPベースのSAPシステムで作業しています。プロファイルパラメータrsp/store_locationに\"G\"という値を使用する場合、スプールデータはどこに保存されますか？ ",
+    "options": [
+      {
+        "text": "/usr/sap/<SID>/D<nn>/work",
+        "status": "incorrect"
+      },
+      {
+        "text": "/usr/sap/<SID>/sys/global",
+        "status": "correct"
+      },
+      {
+        "text": "/usr/sap/<SID>/D<nn>/data",
+        "status": "incorrect"
+      },
+      {
+        "text": "/usr/sap/<SID>/sys/profile",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "/usr/sap/<SID>/D<nn>/work：SAPインスタンスのワークディレクトリ\n/usr/sap/<SID>/sys/global：SAPシステムのグローバルディレクトリで、システム全体で共有されるデータが保存される場所。スプールデータの保存場所として一般的。\n/usr/sap/<SID>/D<nn>/data：インスタンス固有のデータディレクトリ\n/usr/sap/<SID>/sys/profile：SAPシステムのプロファイル情報が保存されるディレクトリ"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "移送依頼のインポート中に、どのツールが移送ディレクトリの `tmp` サブディレクトリにログファイルを書き込みますか？ 注意：この質問には3つの正しい答えがあります。 ",
+    "options": [
+      {
+        "text": "RDDMNTAB",
+        "status": "incorrect"
+      },
+      {
+        "text": "R3load",
+        "status": "correct"
+      },
+      {
+        "text": "R3trans",
+        "status": "correct"
+      },
+      {
+        "text": "RDDMASGL",
+        "status": "incorrect"
+      },
+      {
+        "text": "Tp",
+        "status": "correct"
+      }
+    ],
+    "explanation": "「ログファイルを書くのは、ロード・トランス・テレポート」\nRDDMNTAB：主にテーブルの管理に使用される。ログファイルを書き込むツールではない。\nR3trans：データをSAPシステム間で移送するためのツール。\nR3load：データベーステーブルのデータをエクスポートおよびインポートするツール。\nTp：移送管理システムのメインツールで、他のツールを呼び出して移送プロセスを実行する。\nRDDMASGL：ABAPディクショナリーオブジェクトのアクティベーションに使用。"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "次のうち、AS JavaベースのSAPシステムで影響を受けるサーバープロセスを再起動しなければ変更が有効にならないものはどれですか? 注意: この質問には正解が2つあります。",
+    "options": [
+      {
+        "text": "マネージャープロパティ値の変更",
+        "status": "correct"
+      },
+      {
+        "text": "キーフレーズの変更",
+        "status": "incorrect"
+      },
+      {
+        "text": "UMEデータソースの変更",
+        "status": "correct"
+      },
+      {
+        "text": "サービスプロパティ値の変更",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "マネージャープロパティ：システム内で特定の管理機能に関連する設定値。システムの重要な部分に影響を与えるため、有効にするためにはサーバープロセスの再起動が必要。\nUME (User Management Engine)：ユーザー管理を行うエンジン。\nキーフレーズ：セキュリティに関連するフレーズやパスワード。即座に適用される。\nサービスプロパティ：特定のサービス機能に関連する設定値。即座に適用される。"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "あなたは開発システムでタスクリスト（STC01）を作成しました。このタスクリストを品質保証システムで利用可能にするために何を使用できますか？ ",
+    "options": [
+      {
+        "text": "ワークベンチリクエスト",
+        "status": "correct"
+      },
+      {
+        "text": "カスタマイジングリクエスト",
+        "status": "incorrect"
+      },
+      {
+        "text": "ファイルのダウンロードとアップロード",
+        "status": "incorrect"
+      },
+      {
+        "text": "RFCベースの配布",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "「タスクリストの移行にはワークベンチリクエストを使用する」\nSTC01：SAPシステムでタスクリストを作成、編集、実行するためのトランザクションコード。\nワークベンチリクエスト（Workbench Request）：開発オブジェクトを異なるシステム間で移行するためのリクエスト。\nカスタマイジングリクエスト（Customizing Request）：システム設定やカスタマイズ情報を移行するためのリクエスト。\nRFC（Remote Function Call）：異なるSAPシステム間で関数をリモートで呼び出して実行するための方法。"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "AS ABAPベースのSAPシステムにおいて、実行時に動的に切り替え可能なパラメータの値を変更するために何を使用できますか？ ",
+    "options": [
+      {
+        "text": "レポート RSPFPAR",
+        "status": "incorrect"
+      },
+      {
+        "text": "トランザクション RZ11 (プロファイルパラメータの編集)",
+        "status": "correct"
+      },
+      {
+        "text": "トランザクション RZ10 (プロファイルの編集)",
+        "status": "incorrect"
+      },
+      {
+        "text": "Command line tool sappfpar(RZ11)",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "RZ11で表示と動的変更、RZ10で全体直接変更"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "あなたはプライマリ・アプリケーションサーバーインスタンスを再起動しました。再起動後、どのプロファイルに対して変更が有効になりますか？ 注意：この質問には正解が2つあります。",
+    "options": [
+      {
+        "text": "セントラルサービスインスタンスプロファイル",
+        "status": "incorrect"
+      },
+      {
+        "text": "デフォルトプロファイル",
+        "status": "correct"
+      },
+      {
+        "text": "追加アプリケーションサーバーインスタンスプロファイル",
+        "status": "incorrect"
+      },
+      {
+        "text": "プライマリアプリケーションサーバーインスタンスプロファイル ",
+        "status": "correct"
+      }
+    ],
+    "explanation": "※こういう系は再起動したインスタンス自身とデフォルトプロファイル"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "AS ABAPベースのシステムにおいて、SAP GUIを使用してリモートプリンター（ホストスプールアクセス方法SまたはU）にリストを印刷しています。印刷データはどのルートを通りますか？ ",
+    "options": [
+      {
+        "text": "ダイアログワークプロセス -> TemSe -> スプールワークプロセス -> プリンタ",
+        "status": "incorrect"
+      },
+      {
+        "text": "スプールワークプロセス -> TemSe -> プリンタ",
+        "status": "incorrect"
+      },
+      {
+        "text": "ダイアログワークプロセス -> スプールワークプロセス -> TemSe -> プリンタ",
+        "status": "correct"
+      },
+      {
+        "text": "スプールワークプロセス -> TemSe -> ディスパッチャ -> プリンタ+A33:E33",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "TemSe (Temporary Sequential File)：一時的なデータ保存場所。スプールリクエストが保存され、後で出力要求として処理される。"
+  },
+  {
+    "source_sheet": "CTDM過去問_240304_105546",
+    "question": "Java起動および制御フレームワークを使用して、AS JavaベースのSAPシステムのアプリケーションサーバーを起動する正しい手順は何ですか？",
+    "options": [
+      {
+        "text": "1. オフラインデプロイを開始 \n2. ブートストラッププロセスを開始 \n3. ICM／サーバープロセスを開始 \n4. SCSインスタンスに接続 ",
+        "status": "incorrect"
+      },
+      {
+        "text": "1. SCSインスタンスに接続\n2. オフラインデプロイを開始\n3. ブートストラッププロセスを開始\n4. ICM／サーバープロセスを開始",
+        "status": "correct"
+      },
+      {
+        "text": "1. ICM／サーバープロセスを開始\n2. オフラインデプロイを開始\n3. ブートストラッププロセスを開始\n4. SCSインスタンスに接続",
+        "status": "incorrect"
+      },
+      {
+        "text": "1. SCSインスタンスに接続\n2. ブートストラッププロセスを開始\n3. オフラインデプロイを開始\n4. ICM／サーバープロセスを開始",
+        "status": "incorrect"
+      }
+    ],
+    "explanation": "オフラインデプロイ：システムが完全に起動する前に必要なソフトウェアコンポーネントの配備。\nブートストラッププロセス：システムの基本部分を初期化するプロセス。"
+  }
+]
