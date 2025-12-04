@@ -158,12 +158,13 @@ def load_user_data_from_sheets():
         return {
             "history": json.loads(row["history"]) if pd.notna(row["history"]) else {},
             "marked": json.loads(row["marked"]) if pd.notna(row["marked"]) else [],
-            "stats": json.loads(row["stats"]) if pd.notna(row["stats"]) else {"correct": 0, "incorrect": 0, "total": 0}
+            "stats": json.loads(row["stats"]) if pd.notna(row["stats"]) else {"correct": 0, "incorrect": 0, "total": 0},
+            "last_question_index": int(row["last_question_index"]) if pd.notna(row.get("last_question_index")) else 0
         }
     except Exception as e:
         # ワークシートが存在しない場合など
+        st.error(f"Google Sheets読み込みエラー: {e}")
         return None
-
 
 def save_user_data_to_sheets():
     """Google Sheetsにユーザーデータを保存"""
@@ -173,12 +174,20 @@ def save_user_data_to_sheets():
     
     user_id = get_user_id()
     
+    # 現在表示中の問題インデックスを取得
+    filtered_indices = get_filtered_indices()
+    if filtered_indices and st.session_state.current_index < len(filtered_indices):
+        last_question_index = filtered_indices[st.session_state.current_index]
+    else:
+        last_question_index = 0
+    
     # 保存データを準備
     save_data = {
         "user_id": user_id,
         "history": json.dumps({str(k): v for k, v in st.session_state.get("history", {}).items()}),
         "marked": json.dumps(list(st.session_state.get("marked_questions", set()))),
         "stats": json.dumps(st.session_state.get("current_session_stats", {"correct": 0, "incorrect": 0, "total": 0})),
+        "last_question_index": last_question_index,
         "updated_at": datetime.now().isoformat()
     }
     
@@ -187,9 +196,9 @@ def save_user_data_to_sheets():
         try:
             df = conn.read(worksheet="UserData", ttl=0)
             if df is None or df.empty:
-                df = pd.DataFrame(columns=["user_id", "history", "marked", "stats", "updated_at"])
+                df = pd.DataFrame(columns=["user_id", "history", "marked", "stats", "last_question_index", "updated_at"])
         except:
-            df = pd.DataFrame(columns=["user_id", "history", "marked", "stats", "updated_at"])
+            df = pd.DataFrame(columns=["user_id", "history", "marked", "stats", "last_question_index", "updated_at"])
         
         # ユーザーの行を更新または追加
         if user_id in df["user_id"].values:
@@ -264,9 +273,13 @@ def initialize_session_state():
             st.session_state.history = {int(k): v for k, v in saved_data.get("history", {}).items()}
             st.session_state.marked_questions = set(saved_data.get("marked", []))
             st.session_state.current_session_stats = saved_data.get("stats", {"correct": 0, "incorrect": 0, "total": 0})
+            # 最後に表示した問題インデックスを復元
+            st.session_state.last_question_index = saved_data.get("last_question_index", 0)
     
     if "current_index" not in st.session_state:
-        st.session_state.current_index = 0
+        # 保存された問題インデックスがあればそれを使用
+        last_idx = st.session_state.get("last_question_index", 0)
+        st.session_state.current_index = last_idx
     if "answered" not in st.session_state:
         st.session_state.answered = False
     if "selected_options" not in st.session_state:
@@ -326,6 +339,8 @@ def go_to_next_question():
     st.session_state.selected_options = []
     # 次の問題では新しい選択肢順序
     reset_option_orders()
+    # 現在の問題をDBに保存
+    save_user_data_to_sheets()
     st.rerun()
 
 
@@ -338,6 +353,8 @@ def go_to_prev_question():
     st.session_state.answered = False
     st.session_state.selected_options = []
     reset_option_orders()
+    # 現在の問題をDBに保存
+    save_user_data_to_sheets()
     st.rerun()
 
 
@@ -549,6 +566,7 @@ def display_settings():
                 st.session_state.current_index = target_idx
             st.session_state.answered = False
             reset_option_orders()
+            save_user_data_to_sheets()
             st.rerun()
     
     st.divider()
@@ -589,6 +607,7 @@ def display_marked_list():
                 st.session_state.current_index = idx
                 st.session_state.answered = False
                 reset_option_orders()
+                save_user_data_to_sheets()
                 st.rerun()
 
 
