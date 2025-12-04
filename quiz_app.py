@@ -292,25 +292,36 @@ def initialize_session_state():
         st.session_state.shuffle_mode = False
     if "shuffled_indices" not in st.session_state:
         st.session_state.shuffled_indices = list(range(len(st.session_state.questions)))
-    if "filter_mode" not in st.session_state:
-        st.session_state.filter_mode = "all"
+    if "filter_modes" not in st.session_state:
+        st.session_state.filter_modes = {"all"}  # 複数選択対応のためsetに変更
     if "current_session_stats" not in st.session_state:
         st.session_state.current_session_stats = {"correct": 0, "incorrect": 0, "total": 0}
 
 
 def get_filtered_indices():
-    """フィルターに基づいて問題インデックスを取得"""
+    """フィルターに基づいて問題インデックスを取得（複数フィルター対応）"""
     all_indices = st.session_state.shuffled_indices if st.session_state.shuffle_mode else list(range(len(st.session_state.questions)))
     
-    if st.session_state.filter_mode == "all":
+    filter_modes = st.session_state.filter_modes
+    
+    # 「すべて」が選択されている場合、または何も選択されていない場合は全問題を返す
+    if "all" in filter_modes or not filter_modes:
         return all_indices
-    elif st.session_state.filter_mode == "marked":
-        return [i for i in all_indices if i in st.session_state.marked_questions]
-    elif st.session_state.filter_mode == "incorrect":
-        return [i for i in all_indices if i in st.session_state.history and not st.session_state.history[i]["correct"]]
-    elif st.session_state.filter_mode == "unanswered":
-        return [i for i in all_indices if i not in st.session_state.history]
-    return all_indices
+    
+    # 複数フィルターの条件を満たす問題を収集（OR条件）
+    result = set()
+    
+    if "marked" in filter_modes:
+        result.update(i for i in all_indices if i in st.session_state.marked_questions)
+    
+    if "incorrect" in filter_modes:
+        result.update(i for i in all_indices if i in st.session_state.history and not st.session_state.history[i]["correct"])
+    
+    if "unanswered" in filter_modes:
+        result.update(i for i in all_indices if i not in st.session_state.history)
+    
+    # 元の順序を維持
+    return [i for i in all_indices if i in result]
 
 
 def count_correct_options(question):
@@ -400,6 +411,22 @@ def display_question():
     
     if not filtered_indices:
         st.warning("該当する問題がありません")
+        st.markdown("---")
+        st.markdown("**フィルターを変更してください：**")
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.button("🔄 すべての問題を表示", use_container_width=True, type="primary"):
+                st.session_state.filter_modes = {"all"}
+                st.session_state.current_index = 0
+                st.session_state.answered = False
+                st.rerun()
+        with col2:
+            if st.button("⚙️ 設定タブへ", use_container_width=True):
+                st.info("上の⚙️タブから問題フィルターを変更できます")
+        
+        # 現在のフィルター状態を表示
+        st.caption(f"現在のフィルター: {', '.join(st.session_state.filter_modes)}")
         return
     
     if st.session_state.current_index >= len(filtered_indices):
@@ -413,6 +440,16 @@ def display_question():
     st.markdown(f'<div class="question-box">{question["question"]}</div>', unsafe_allow_html=True)
     
     correct_count = count_correct_options(question)
+    
+    # お気に入りマークボタン（常に表示）
+    mark_label = "⭐ お気に入り解除" if question_idx in st.session_state.marked_questions else "☆ お気に入り登録"
+    if st.button(mark_label, use_container_width=True, key="mark_btn_top"):
+        if question_idx in st.session_state.marked_questions:
+            st.session_state.marked_questions.remove(question_idx)
+        else:
+            st.session_state.marked_questions.add(question_idx)
+        save_user_data_to_sheets()
+        st.rerun()
     
     if not st.session_state.answered:
         # シャッフルされた選択肢を表示
@@ -486,23 +523,14 @@ def display_question():
             st.markdown(f'<div class="explanation-box">📖 <b>解説</b><br>{question["explanation"]}</div>', unsafe_allow_html=True)
         
         # ボタン
-        btn_cols = st.columns(3)
+        btn_cols = st.columns(2)
         with btn_cols[0]:
-            mark_label = "★解除" if question_idx in st.session_state.marked_questions else "☆マーク"
-            if st.button(mark_label, use_container_width=True):
-                if question_idx in st.session_state.marked_questions:
-                    st.session_state.marked_questions.remove(question_idx)
-                else:
-                    st.session_state.marked_questions.add(question_idx)
-                save_user_data_to_sheets()
-                st.rerun()
-        with btn_cols[1]:
-            if st.button("🔄", use_container_width=True, help="もう一度"):
+            if st.button("🔄 もう一度", use_container_width=True):
                 st.session_state.answered = False
                 st.session_state.selected_options = []
                 reset_option_orders()
                 st.rerun()
-        with btn_cols[2]:
+        with btn_cols[1]:
             if st.button("次へ ▶", type="primary", use_container_width=True):
                 go_to_next_question()
 
@@ -514,26 +542,82 @@ def display_settings():
     # ユーザーID表示
     st.caption(f"ユーザーID: {get_user_id()}")
     
-    filter_options = {
-        "all": f"すべて ({len(st.session_state.questions)})",
-        "marked": f"⭐マーク ({len(st.session_state.marked_questions)})",
-        "incorrect": f"❌不正解 ({len([i for i in st.session_state.history if not st.session_state.history[i]['correct']])})",
-        "unanswered": f"未回答 ({len(st.session_state.questions) - len(st.session_state.history)})"
+    # 問題フィルター（複数選択対応）
+    st.markdown("**問題フィルター:**")
+    
+    filter_counts = {
+        "all": len(st.session_state.questions),
+        "marked": len(st.session_state.marked_questions),
+        "incorrect": len([i for i in st.session_state.history if not st.session_state.history[i]['correct']]),
+        "unanswered": len(st.session_state.questions) - len(st.session_state.history)
     }
     
-    selected_filter = st.radio(
-        "問題フィルター:",
-        options=list(filter_options.keys()),
-        format_func=lambda x: filter_options[x],
-        index=list(filter_options.keys()).index(st.session_state.filter_mode),
-        horizontal=True
+    filter_labels = {
+        "all": f"すべて ({filter_counts['all']})",
+        "marked": f"⭐マーク ({filter_counts['marked']})",
+        "incorrect": f"❌不正解 ({filter_counts['incorrect']})",
+        "unanswered": f"未回答 ({filter_counts['unanswered']})"
+    }
+    
+    # 現在の選択状態を取得
+    current_modes = st.session_state.filter_modes.copy()
+    
+    # 「すべて」のチェックボックス
+    all_checked = st.checkbox(
+        filter_labels["all"],
+        value="all" in current_modes,
+        key="filter_all"
     )
     
-    if selected_filter != st.session_state.filter_mode:
-        st.session_state.filter_mode = selected_filter
+    # その他のフィルター
+    col1, col2 = st.columns(2)
+    with col1:
+        marked_checked = st.checkbox(
+            filter_labels["marked"],
+            value="marked" in current_modes and "all" not in current_modes,
+            disabled="all" in current_modes,
+            key="filter_marked"
+        )
+    with col2:
+        incorrect_checked = st.checkbox(
+            filter_labels["incorrect"],
+            value="incorrect" in current_modes and "all" not in current_modes,
+            disabled="all" in current_modes,
+            key="filter_incorrect"
+        )
+    
+    unanswered_checked = st.checkbox(
+        filter_labels["unanswered"],
+        value="unanswered" in current_modes and "all" not in current_modes,
+        disabled="all" in current_modes,
+        key="filter_unanswered"
+    )
+    
+    # フィルターの更新
+    new_modes = set()
+    if all_checked:
+        new_modes.add("all")
+    else:
+        if marked_checked:
+            new_modes.add("marked")
+        if incorrect_checked:
+            new_modes.add("incorrect")
+        if unanswered_checked:
+            new_modes.add("unanswered")
+    
+    # 何も選択されていない場合は「すべて」を選択
+    if not new_modes:
+        new_modes.add("all")
+    
+    if new_modes != st.session_state.filter_modes:
+        st.session_state.filter_modes = new_modes
         st.session_state.current_index = 0
         st.session_state.answered = False
         st.rerun()
+    
+    # 現在のフィルター結果を表示
+    filtered_count = len(get_filtered_indices())
+    st.caption(f"フィルター結果: {filtered_count}問")
     
     shuffle = st.toggle("🔀 問題順シャッフル", value=st.session_state.shuffle_mode)
     if shuffle != st.session_state.shuffle_mode:
